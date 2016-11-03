@@ -1,7 +1,7 @@
-package guru.springframework.services;
+package services;
 
-import guru.springframework.domain.Game;
-import guru.springframework.domain.GameId;
+import domain.Game;
+import domain.GameId;
 
 public interface GameService {
 	Iterable<Game> listAllGames();

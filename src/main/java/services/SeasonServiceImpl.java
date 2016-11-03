@@ -1,10 +1,10 @@
-package guru.springframework.services;
+package services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import guru.springframework.domain.Season;
-import guru.springframework.repositories.SeasonRepository;
+import domain.Season;
+import repositories.SeasonRepository;
 
 @Service
 public class SeasonServiceImpl implements SeasonService {

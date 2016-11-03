@@ -1,10 +1,10 @@
-package guru.springframework.repositories;
+package repositories;
 
 import javax.persistence.criteria.CriteriaBuilder.In;
 
 import org.springframework.data.repository.CrudRepository;
 
-import guru.springframework.domain.Product;
+import domain.Product;
 
 public interface ProductRepository extends CrudRepository<Product, Integer>{
 

@@ -1,7 +1,5 @@
-package guru.springframework.bootstrap;
+package bootstrap;
 
-import java.math.BigDecimal;
-import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -11,9 +9,8 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
-import guru.springframework.domain.Game;
-import guru.springframework.domain.Product;
-import guru.springframework.repositories.GameRepository;
+import domain.Game;
+import repositories.GameRepository;
 
 @Component
 public class GameLoader implements ApplicationListener<ContextRefreshedEvent> {

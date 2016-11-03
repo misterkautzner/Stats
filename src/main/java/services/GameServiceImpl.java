@@ -1,11 +1,11 @@
-package guru.springframework.services;
+package services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import guru.springframework.domain.Game;
-import guru.springframework.domain.GameId;
-import guru.springframework.repositories.GameRepository;
+import domain.Game;
+import domain.GameId;
+import repositories.GameRepository;
 
 @Service
 public class GameServiceImpl implements GameService{

@@ -1,6 +1,6 @@
-package guru.springframework.services;
+package services;
 
-import guru.springframework.domain.Season;
+import domain.Season;
 
 public interface SeasonService {
 	Iterable<Season> listAllSeasons();

@@ -1,8 +1,8 @@
-package guru.springframework.repositories;
+package repositories;
 
 import org.springframework.data.repository.CrudRepository;
 
-import guru.springframework.domain.Game;
+import domain.Game;
 
 public interface GameRepository extends CrudRepository<Game, Integer>{
 	

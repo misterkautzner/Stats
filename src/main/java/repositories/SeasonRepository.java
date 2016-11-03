@@ -1,8 +1,8 @@
-package guru.springframework.repositories;
+package repositories;
 
 import org.springframework.data.repository.CrudRepository;
 
-import guru.springframework.domain.Season;
+import domain.Season;
 
 public interface SeasonRepository extends CrudRepository<Season, Integer>{
 

@@ -1,4 +1,4 @@
-package guru.springframework.bootstrap;
+package bootstrap;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,8 +6,8 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
-import guru.springframework.domain.Season;
-import guru.springframework.repositories.SeasonRepository;
+import domain.Season;
+import repositories.SeasonRepository;
 
 @Component
 public class SeasonLoader implements ApplicationListener<ContextRefreshedEvent> {

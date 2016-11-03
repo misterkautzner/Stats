@@ -1,4 +1,4 @@
-package guru.springframework.bootstrap;
+package bootstrap;
 
 import java.math.BigDecimal;
 
@@ -8,8 +8,8 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
-import guru.springframework.domain.Product;
-import guru.springframework.repositories.ProductRepository;
+import domain.Product;
+import repositories.ProductRepository;
 
 @Component
 public class ProductLoader implements ApplicationListener<ContextRefreshedEvent>{

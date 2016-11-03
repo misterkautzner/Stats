@@ -1,4 +1,4 @@
-package guru.springframework.controllers;
+package controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import guru.springframework.domain.Season;
-import guru.springframework.services.SeasonService;
+import domain.Season;
+import services.SeasonService;
 
 @Controller
 public class SeasonController {
