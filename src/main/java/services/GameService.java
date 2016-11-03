@@ -1,7 +1,6 @@
 package services;
 
 import domain.Game;
-import domain.GameId;
 
 public interface GameService {
 	Iterable<Game> listAllGames();
