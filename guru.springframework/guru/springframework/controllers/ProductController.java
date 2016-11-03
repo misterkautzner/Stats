@@ -54,11 +54,11 @@ public class ProductController {
     }
     
 //    I wrote the following code
-//    @RequestMapping("delete/delete")
-//    public String deleteProduct(Model model){
-//    	model.
-//        model.addAttribute("product", new Product());
-//        return "productform";
-//    }
+    @RequestMapping("product/delete/{id}")
+    public String deleteProduct(@PathVariable Integer id, Model model){
+    	productService.deleteProductById(id);
+    	model.addAttribute("products", productService.listAllProducts());
+    	return "redirect:/products";
+    }
 
 }

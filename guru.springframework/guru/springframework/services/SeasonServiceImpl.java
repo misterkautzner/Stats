@@ -31,8 +31,8 @@ public class SeasonServiceImpl implements SeasonService {
 	}
 
 	@Override
-	public void deleteSeason(Season season) {
-		seasonRepository.delete(season);
+	public void deleteSeasonByNumber(Integer season_number) {
+		seasonRepository.delete(seasonRepository.findOne(season_number));
 	}
 
 }

@@ -31,9 +31,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
 //    I wrote the following code
-//	@Override
-//	public void deleteProduct(Integer id) {
-//		productRepository.delete(productRepository.findOne(id));
-//		
-//	}
+	@Override
+	public void deleteProductById(Integer id) {
+		productRepository.delete(productRepository.findOne(id));
+		
+	}
 }

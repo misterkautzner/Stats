@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+</head>
+<body>
+
+<div class="container">
+    <div th:fragment="header">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#" th:href="@{/}">Home</a>
+                    <ul class="nav navbar-nav">
+                        <li><a href="#" th:href="@{/players}">Players</a></li>
+                        <li><a href="#" th:href="@{/stats}">Stats</a></li>
+                        <li><a href="#" th:href="@{/games}">Games</a></li>
+                        <li><a href="#" th:href="@{/seasons}">Seasons</a></li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+
+        <div class="jumbotron">
+            <div class="row text-center">
+                <div class="">
+                    <h2>Stat Tracker</h2>
+                </div>
+            </div>
+            <div class="row text-center">
+                <img src="../../static/images/Hockey Club (2).jpg" width="800"
+                     th:src="@{/images/Hockey Club (2).jpg}"/>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

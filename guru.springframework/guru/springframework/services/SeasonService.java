@@ -9,5 +9,5 @@ public interface SeasonService {
 	
 	Season saveSeason(Season season);
 	
-	void deleteSeason(Season season);
+	void deleteSeasonByNumber(Integer season_number);
 }

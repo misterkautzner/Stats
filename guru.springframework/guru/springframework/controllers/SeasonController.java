@@ -52,8 +52,13 @@ public class SeasonController {
 
         return "redirect:/season/" + season.getSeasonNumber();
     }
-    
 
+    @RequestMapping("season/delete/{season_number}")
+    public String deleteProduct(@PathVariable Integer season_number, Model model){
+    	seasonService.deleteSeasonByNumber(season_number);
+    	model.addAttribute("seasons", seasonService.listAllSeasons());
+    	return "redirect:/seasons";
+    }
 
 }
 
