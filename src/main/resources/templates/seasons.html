@@ -1,0 +1,37 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Seasons</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <div th:if="${not #lists.isEmpty(products)}">
+        <h2>Seasons</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Season Number</th>
+                <th>Description</th>
+                <th>View</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr th:each="season : ${seasons}">
+                <td th:text="${season.season_number}">season number</td>
+                <td th:text="${season.season_name}">description</td>
+                <td><a th:href="${'/season/' + season.season_number}">View</a></td>
+                <td><a th:href="${'/season/edit/' + season.season_number}">Edit</a></td>
+                <td><a th:href="${'/season/delete/' + season.season_number}">Delete</a></td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html Xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+	<title>Spring Framework Guru</title>
+	<th:block th:include="fragments/headerinc :: head"></th:block>
+	
+	<!-- Thymeleaf fragment "headerinc" covers this:
+	
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	<link
+	href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+	th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
+	rel="stylesheet" media="screen" />
+
+	<script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+	th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+
+	<link href="../static/css/guru.css" th:href="@{css/guru.css}"
+	rel="stylesheet" media="screen" />
+	 -->
+
+</head>
+<body>
+<div class="container">
+
+	<th:block th:include="fragments/header :: header"></th:block>
+
+<!-- Thymeleaf fragment "header" covers this: 
+
+	<div class="jumbotron">
+		<img src="../static/images/IMG_0003.JPG" width="1000"
+             th:src="@{images/IMG_0003.JPG}"/>
+	<h1>Hello</h1>
+
+	<h2>Fellow Spring Framework Gurus!!!</h2>
+	</div>
+	 -->
+</div>
+
+</body>
+</html>
