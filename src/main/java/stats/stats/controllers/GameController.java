@@ -3,6 +3,7 @@ package stats.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -26,17 +27,22 @@ public class GameController {
 		return "games";		// Reload the page?
 	}
 	
-//	@RequestMapping("game/{season_number}/{game_number}")
-//	public String showGame(@PathVariable Integer season_number, @PathVariable Integer game_number, Model model) {
-//		model.addAttribute("game", gameService.getGameById(season_number, game_number));
-//		return "gameshow";
-//	}
+	@RequestMapping("game/{gameId}")
+	public String showGame(@PathVariable Integer gameId, Model model) {
+		System.out.println("");
+		System.out.println("");
+		System.out.println("GameId = " + gameId);
+		System.out.println("");
+		System.out.println("");
+		model.addAttribute("game", gameService.getGameById(gameId));
+		return "gameshow";
+	}
 	
-//    @RequestMapping("game/edit/{season_number}/{game_number}")
-//    public String edit(@PathVariable Integer season_number, Integer game_number, Model model){
-//        model.addAttribute("product", gameService.getGameById(season_number, game_number));
-//        return "gameform";
-//    }
+    @RequestMapping("game/edit/{gameId}")
+    public String edit(@PathVariable Integer gameId, Model model){
+        model.addAttribute("game", gameService.getGameById(gameId));
+        return "gameform";
+    }
 
     @RequestMapping("game/new")
     public String newGame(Model model){
@@ -46,18 +52,22 @@ public class GameController {
 
     @RequestMapping(value = "game", method = RequestMethod.POST)
     public String saveGame(Game game){
-
+    	game.calculateGameId();
+    	//game.breakDownGameId();
+    	System.out.println("");
+    	System.out.println("GameId = " + game.getGameId()+ "  season = " + game.getSeason_number() + "  game = " + game.getGame_number());
+    	System.out.println("");
     	gameService.saveGame(game);
 
-        return "redirect:/game/" + game.getSeasonNumber() + "/" + game.getGameNumber();
+        return "redirect:/game/" + game.getGameId();
     }
     
-//    @RequestMapping("game/delete/{...........}")
-//    public String deleteGame(@PathVariable Integer ............, Model model){
-//    	gameService.deleteSeasonByNumber(............);
-//    	model.addAttribute("games", gameService.listAllGames());
-//    	return "redirect:/games";
-//    }
+    @RequestMapping("game/delete/{gameId}")
+    public String deleteGame(@PathVariable Integer gameId, Model model){
+    	gameService.deleteGameById(gameId);
+    	model.addAttribute("games", gameService.listAllGames());
+    	return "redirect:/games";
+    }
     
     
 		

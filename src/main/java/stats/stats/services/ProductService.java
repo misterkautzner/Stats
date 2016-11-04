@@ -1,6 +1,5 @@
 package stats.services;
 
-
 import stats.domain.Product;
 
 public interface ProductService {

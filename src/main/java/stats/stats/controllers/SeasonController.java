@@ -23,7 +23,7 @@ public class SeasonController {
     @RequestMapping(value = "/seasons", method = RequestMethod.GET)
     public String list(Model model){
         model.addAttribute("seasons", seasonService.listAllSeasons());
-        System.out.println("Returning Seasons:");
+        System.out.println("Returning seasons:");
         return "seasons";
     }
 
@@ -33,7 +33,7 @@ public class SeasonController {
         return "seasonshow";
     }
 
-    @RequestMapping("Season/edit/{season_number}")
+    @RequestMapping("season/edit/{season_number}")
     public String edit(@PathVariable Integer season_number, Model model){
         model.addAttribute("season", seasonService.getSeasonByNumber(season_number));
         return "seasonform";
@@ -50,7 +50,7 @@ public class SeasonController {
 
         seasonService.saveSeason(season);
 
-        return "redirect:/season/" + season.getSeasonNumber();
+        return "redirect:/season/" + season.getSeason_number();
     }
 
     @RequestMapping("season/delete/{season_number}")

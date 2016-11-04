@@ -11,19 +11,20 @@ public class Season {
 	
 	private String season_name;
 
-	public Integer getSeasonNumber() {
+	
+	public Integer getSeason_number() {
 		return season_number;
 	}
 
-	public void setSeasonNumber(Integer season_number) {
+	public void setSeason_number(Integer season_number) {
 		this.season_number = season_number;
 	}
 
-	public String getSeasonName() {
+	public String getSeason_name() {
 		return season_name;
 	}
 
-	public void setSeasonName(String season_name) {
+	public void setSeason_name(String season_name) {
 		this.season_name = season_name;
 	}
 }

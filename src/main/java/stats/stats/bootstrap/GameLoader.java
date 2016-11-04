@@ -27,28 +27,30 @@ public class GameLoader implements ApplicationListener<ContextRefreshedEvent> {
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		Game game1 = new Game();
-		game1.setSeasonNumber(1);
-		game1.setGameNumber(1);
-		game1.setSpecialName("First Game");
+		game1.setGameId(101);
+		game1.setSeason_number(1);
+		game1.setGame_number(1);
+		game1.setSpecial_name("First Game");
 		// Format date
 		String date = "2015-01-05";
 		game1.setDate(makeDate(date));
 
 		gameRepository.save(game1);
 
-		log.info("Saved Game - season: " + game1.getSeasonNumber() + ", game: " + game1.getGameNumber());
+		log.info("Saved Game - season: " + game1.getSeason_number() + ", game: " + game1.getGame_number());
 		
 		Game game2 = new Game();
-		game2.setSeasonNumber(1);
-		game2.setGameNumber(2);
+		game2.setGameId(102);
+		game2.setSeason_number(1);
+		game2.setGame_number(2);
 		//game2.setSpecialName("");
 		// Format date
 		String date2 = "2015-01-12";
 		game2.setDate(makeDate(date2));
 
-		gameRepository.save(game1);
+		gameRepository.save(game2);
 
-		log.info("Saved Game - season: " + game1.getSeasonNumber() + ", game: " + game2.getGameNumber());
+		log.info("Saved Game - season: " + game2.getSeason_number() + ", game: " + game2.getGame_number());
 	}
 
 	// Format the date

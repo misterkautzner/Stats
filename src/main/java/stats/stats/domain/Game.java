@@ -1,45 +1,58 @@
 package stats.domain;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 
 @Entity
-@IdClass(GameId.class)
+//@IdClass(GameId.class)
 public class Game {
 	
-//	@Column(name="season_number")
 	@Id
+	private int gameId;
+
 	private int season_number;
-	
-	@Id
 	private int game_number;
-	
 	private String special_name;
 	private java.sql.Date date;
+	
+	public void calculateGameId() {
+		gameId = season_number*100+game_number;
+	}
+	
+	public void breakDownGameId() {
+		season_number = gameId/100;
+		game_number = gameId%100;
+	}
 
+	public int getGameId() {
+		return gameId;
+	}
+	
+	public void setGameId(int gameId) {
+		this.gameId = gameId;
+	}
 	
 	
-	public int getSeasonNumber() {
+	public int getSeason_number() {
 		return season_number;
 	}
 
-	public void setSeasonNumber(int season) {
+	public void setSeason_number(int season) {
 		this.season_number = season;
 	}
 
-	public int getGameNumber() {
+	public int getGame_number() {
 		return game_number;
 	}
 
-	public void setGameNumber(int game_number) {
+	public void setGame_number(int game_number) {
 		this.game_number = game_number;
 	}
 
-	public String getSpecialName() {
+	public String getSpecial_name() {
 		return special_name;
 	}
 
-	public void setSpecialName(String special_name) {
+	public void setSpecial_name(String special_name) {
 		this.special_name = special_name;
 	}
 

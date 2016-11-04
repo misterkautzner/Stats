@@ -24,20 +24,20 @@ public class SeasonLoader implements ApplicationListener<ContextRefreshedEvent> 
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		Season season1 = new Season();
-		season1.setSeasonNumber(1);
-		season1.setSeasonName("Winter 2015");
+		season1.setSeason_number(1);
+		season1.setSeason_name("Winter 2015");
 		
 		seasonRepository.save(season1);
 		
-		log.info("Saved Season - number: " + season1.getSeasonNumber());
+		log.info("Saved Season - number: " + season1.getSeason_number());
 		
 		Season season2 = new Season();
-		season2.setSeasonNumber(2);
-		season2.setSeasonName("Spring 2015");
+		season2.setSeason_number(2);
+		season2.setSeason_name("Spring 2015");
 		
 		seasonRepository.save(season2);
 		
-		log.info("Saved Season - number: " + season2.getSeasonNumber());
+		log.info("Saved Season - number: " + season2.getSeason_number());
 		
 	}
 

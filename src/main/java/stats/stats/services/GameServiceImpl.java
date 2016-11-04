@@ -1,5 +1,7 @@
 package stats.services;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,10 +22,10 @@ public class GameServiceImpl implements GameService{
 		return gameRepository.findAll();
 	}
 
-//	@Override
-//	public Game getGameById(GameId gameId) {
-//		return gameRepository.findOne(gameId);
-//	}
+	@Override
+	public Game getGameById(Integer gameId) {
+		return gameRepository.findOne(gameId);
+	}
 
 	@Override
 	public Game saveGame(Game game) {
@@ -31,16 +33,20 @@ public class GameServiceImpl implements GameService{
 	}
 
 	@Override
-	public void deleteGame(Game game) {
-		gameRepository.delete(game);
+	public void deleteGameById(Integer gameId) {
+		gameRepository.delete(gameId);
 	}
 
 	@Override
 	public Iterable<Game> listBySeason(Integer season_number) {  
-		// Needs to be done
-	//	gameRepository.findAll().equals(obj)
-	//	return gameRepository.;
-		return null;
+		Iterable<Game> allGames = gameRepository.findAll();
+		ArrayList<Game> seasonGames = new ArrayList<Game>();
+		for(Game game : allGames) {
+			if(game.getSeason_number() == season_number) {
+				seasonGames.add(game);
+			}
+		}
+		return seasonGames;
 	}
 
 
