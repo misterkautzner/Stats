@@ -5,9 +5,11 @@ import stats.domain.Season;
 public interface SeasonService {
 	Iterable<Season> listAllSeasons();
 	
-	Season getSeasonByNumber(Integer season_number);
+	Season getSeasonById(Integer season_id);
+	
+	//Season getSeasonByNumber(Integer season_number);
 	
 	Season saveSeason(Season season);
 	
-	void deleteSeasonByNumber(Integer season_number);
+	void deleteSeasonById(Integer season_id);
 }

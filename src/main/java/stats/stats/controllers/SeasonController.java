@@ -13,12 +13,13 @@ import stats.services.SeasonService;
 @Controller
 public class SeasonController {
 
+	@Autowired
 	private SeasonService seasonService;
 	
-	@Autowired
-    public void setSeasonService(SeasonService seasonService) {
-        this.seasonService = seasonService;
-    }
+	
+//    public void setSeasonService(SeasonService seasonService) {
+//        this.seasonService = seasonService;
+//    }
 
     @RequestMapping(value = "/seasons", method = RequestMethod.GET)
     public String list(Model model){
@@ -27,15 +28,15 @@ public class SeasonController {
         return "seasons";
     }
 
-    @RequestMapping("season/{season_number}")
-    public String showSeason(@PathVariable Integer season_number, Model model){
-        model.addAttribute("season", seasonService.getSeasonByNumber(season_number));
+    @RequestMapping("season/{season_id}")
+    public String showSeason(@PathVariable Integer season_id, Model model){
+        model.addAttribute("season", seasonService.getSeasonById(season_id));
         return "seasonshow";
     }
 
-    @RequestMapping("season/edit/{season_number}")
-    public String edit(@PathVariable Integer season_number, Model model){
-        model.addAttribute("season", seasonService.getSeasonByNumber(season_number));
+    @RequestMapping("season/edit/{season_id}")
+    public String edit(@PathVariable Integer season_id, Model model){
+        model.addAttribute("season", seasonService.getSeasonById(season_id));
         return "seasonform";
     }
 
@@ -50,12 +51,12 @@ public class SeasonController {
 
         seasonService.saveSeason(season);
 
-        return "redirect:/season/" + season.getSeason_number();
+        return "redirect:/season/" + season.getSeason_id();
     }
 
-    @RequestMapping("season/delete/{season_number}")
-    public String deleteProduct(@PathVariable Integer season_number, Model model){
-    	seasonService.deleteSeasonByNumber(season_number);
+    @RequestMapping("season/delete/{season_id}")
+    public String deleteSeason(@PathVariable Integer season_id, Model model){
+    	seasonService.deleteSeasonById(season_id);
     	model.addAttribute("seasons", seasonService.listAllSeasons());
     	return "redirect:/seasons";
     }

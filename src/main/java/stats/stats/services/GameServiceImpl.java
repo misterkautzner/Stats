@@ -1,21 +1,22 @@
 package stats.services;
 
-import java.util.ArrayList;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import stats.domain.Game;
+import stats.domain.Season;
 import stats.repositories.GameRepository;
 
 @Service
 public class GameServiceImpl implements GameService{
+	
+	@Autowired	
 	private GameRepository gameRepository;
 	
-	@Autowired
-	public void setGameRepository(GameRepository gameRepository) {
-		this.gameRepository = gameRepository;
-	}
+
+//	public void setGameRepository(GameRepository gameRepository) {
+//		this.gameRepository = gameRepository;
+//	}
 	
 	@Override
 	public Iterable<Game> listAllGames() {
@@ -37,16 +38,22 @@ public class GameServiceImpl implements GameService{
 		gameRepository.delete(gameId);
 	}
 
+//	@Override
+//	public Iterable<Game> listBySeason(Integer season_number) {  
+//		Iterable<Game> allGames = gameRepository.findAll();
+//		ArrayList<Game> seasonGames = new ArrayList<Game>();
+//		for(Game game : allGames) {
+//			if(game.getSeason_number() == season_number) {
+//				seasonGames.add(game);
+//			}
+//		}
+//		return seasonGames;
+//	}
+
 	@Override
-	public Iterable<Game> listBySeason(Integer season_number) {  
-		Iterable<Game> allGames = gameRepository.findAll();
-		ArrayList<Game> seasonGames = new ArrayList<Game>();
-		for(Game game : allGames) {
-			if(game.getSeason_number() == season_number) {
-				seasonGames.add(game);
-			}
-		}
-		return seasonGames;
+	public Season getSeasonByNumber(Integer season_number) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
