@@ -21,6 +21,7 @@ public class Season implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer season_id;
+
 	@Column(name = "season_number")
 	private Integer season_number;
 	@Column(name = "season_name")
@@ -29,6 +30,15 @@ public class Season implements Serializable {
 	@OneToMany
 	@JoinColumn(name = "game_id")
 	private Set<Game> games;
+	
+	
+	public Set<Game> getGames() {
+		return games;
+	}
+
+	public void setGames(Set<Game> games) {
+		this.games = games;
+	}
 	
 	public Integer getSeason_id() {
 		return season_id;

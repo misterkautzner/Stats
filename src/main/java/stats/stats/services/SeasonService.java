@@ -3,6 +3,7 @@ package stats.services;
 import stats.domain.Season;
 
 public interface SeasonService {
+	
 	Iterable<Season> listAllSeasons();
 	
 	Season getSeasonById(Integer season_id);

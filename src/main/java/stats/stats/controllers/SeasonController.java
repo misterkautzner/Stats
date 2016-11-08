@@ -1,5 +1,7 @@
 package stats.controllers;
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import stats.domain.Game;
 import stats.domain.Season;
 import stats.services.SeasonService;
 
@@ -28,11 +31,22 @@ public class SeasonController {
         return "seasons";
     }
 
+//    @RequestMapping("season/{season_id}")
+//    public String showSeason(@PathVariable Integer season_id, Model model){
+//        model.addAttribute("season", seasonService.getSeasonById(season_id));
+//        return "seasonshow";
+//    }
+    
     @RequestMapping("season/{season_id}")
     public String showSeason(@PathVariable Integer season_id, Model model){
-        model.addAttribute("season", seasonService.getSeasonById(season_id));
+    	Season thisSeason = seasonService.getSeasonById(season_id);
+    	Set<Game> theseGames = thisSeason.getGames();
+    	model.addAttribute("games", theseGames);
+        model.addAttribute("season", thisSeason);
         return "seasonshow";
     }
+    
+	
 
     @RequestMapping("season/edit/{season_id}")
     public String edit(@PathVariable Integer season_id, Model model){

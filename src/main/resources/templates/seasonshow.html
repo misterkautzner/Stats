@@ -29,15 +29,15 @@
 					<td th:text="${game.game_number}">game number</td>
 					<td th:text="${game.special_name}">description</td>
 					<td th:text="${game.date}">date</td>
-					<td><a th:href="${'/game/' + game.gameId}">View</a></td>
-					<td><a th:href="${'/game/edit/' + game.gameId}">Edit</a></td>
-					<td><a th:href="${'/game/delete/' + game.gameId}">Delete</a></td>
+					<td><a th:href="${'/game/' + game.game_id}">View</a></td>
+					<td><a th:href="${'/game/edit/' + game.game_id}">Edit</a></td>
+					<td><a th:href="${'/game/delete/' + game.game_id}">Delete</a></td>
 				</tr>
 				 
 			</table>
-
-			<form class="form-horizontal" th:object="${game}"
-				th:action="@{/game/new}" method="post">
+															<!-- These two are replaced in line below -->
+			<form class="form-horizontal" th:object="${game}" th:action="@{/game/new}" method="post">
+				<!-- th:action="@{'/season/' + season.season_id + '/game/new'}" method="post"> -->
 				<div class="row">
 					<button type="submit" class="btn btn-default">New Game</button>
 				</div>

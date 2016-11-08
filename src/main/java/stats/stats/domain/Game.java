@@ -21,9 +21,14 @@ public class Game implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int game_id;
 
-	@ManyToOne
-	@JoinColumn(name = "season_id")
-	private Season season;
+//	@ManyToOne
+	
+//	@JoinColumn(name = "season_id")
+//	private int season_id;
+//	private Season season;
+	
+	@JoinColumn(name="season_number")
+	private int season_number;
 
 	@Column(name = "game_number")
 	private int game_number;
@@ -31,6 +36,22 @@ public class Game implements Serializable {
 	private String special_name;
 	@Column(name = "game_date")
 	private java.sql.Date date;
+	
+	
+//	public int getSeason_id() {
+//		return season_id;
+//	}
+//	
+//	public void setSeason_id(int s_id) {
+//		season_id = s_id;
+//	}
+	
+//	public void setSeason_id(int s_id) {
+//		System.out.println("");
+//		System.out.println("Set season_id from Game.  Problems??");
+//		System.out.println("");
+//		season.setSeason_id(s_id);
+//	}
 	
 //	public void calculateGameId() {
 //		gameId = season_number*10000+game_number;
@@ -43,13 +64,14 @@ public class Game implements Serializable {
 //	}
 //	@ManyToOne
 //	@JoinColumn(name = "season_number")
-	public Season getSeason() {
-		return season;
-	}
 	
-	public void setSeason(Season season) {
-		this.season = season;
-	}
+//	public Season getSeason() {
+//		return season;
+//	}
+	
+//	public void setSeason(Season season) {
+//		this.season = season;
+//	}
 
 	public int getGame_id() {
 		return game_id;
@@ -60,13 +82,13 @@ public class Game implements Serializable {
 	}
 	
 	
-//	public int getSeason_number() {
-//		return season_number;
-//	}
-//
-//	public void setSeason_number(int season) {
-//		this.season_number = season;
-//	}
+	public int getSeason_number() {
+		return season_number;
+	}
+
+	public void setSeason_number(int season) {
+		this.season_number = season;
+	}
 
 	public int getGame_number() {
 		return game_number;

@@ -4,6 +4,7 @@ import stats.domain.Game;
 import stats.domain.Season;
 
 public interface GameService {
+	
 	Iterable<Game> listAllGames();
 	
 //	Iterable<Game> listBySeason(Integer season_number); // Implement

@@ -21,12 +21,12 @@ public class GameController {
 //		this.gameService = gameService;
 //	}
 	
-	@RequestMapping(value = "/games", method = RequestMethod.GET)
-	public String list(Model model) {		// Get a list of all games
-		model.addAttribute("games", gameService.listAllGames());	// Add them to the page ?
-		System.out.println("Returning games:");
-		return "games";		// Reload the page?
-	}
+//	@RequestMapping(value = "/games", method = RequestMethod.GET)
+//	public String list(Model model) {		// Get a list of all games
+//		model.addAttribute("games", gameService.listAllGames());	// Add them to the page ?
+//		System.out.println("Returning games:");
+//		return "games";		// Reload the page?
+//	}
 	
 	@RequestMapping("game/{game_id}")
 	public String showGame(@PathVariable Integer game_id, Model model) {
@@ -45,8 +45,12 @@ public class GameController {
         return "gameform";
     }
 
-    @RequestMapping("game/new")
+    @RequestMapping("/game/new")
     public String newGame(Model model){
+    	System.out.println("");
+    	//System.out.println("SEASON ID = " + season_id);
+    	System.out.println("");
+    	// ?? model.addAttribute(season, seasonService(season_id));
         model.addAttribute("game", new Game());	// Give a new (blank) game object to the form
         return "gameform";
     }
