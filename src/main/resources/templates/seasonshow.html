@@ -10,8 +10,40 @@
 	<div class="container">
 		<!--/*/ <th:block th:include="fragments/menubar :: header"></th:block> /*/-->
 
-		<h2>Season Details</h2>
-		<div>
+			<h2 class="row text-center">Season <span th:text="${season.season_number}" />:&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;<span th:text="${season.season_name}" /></h2>
+
+		<h3>Games</h3>
+		<div> <!-- th:if="${not #lists.isEmpty(games)}"> --> 
+			<!-- <h2>Games</h2> -->
+			<table class="table table-striped">
+				<tr>
+					<th>Game Number</th>
+					<th>Special Name</th>
+					<th>Date</th>
+					<th>View</th>
+					<th>Edit</th>
+					<th>Delete</th>
+				</tr>
+			 	<tr th:each="game : ${games}">
+					<td th:text="${game.game_number}">game number</td>
+					<td th:text="${game.special_name}">description</td>
+					<td th:text="${game.date}">date</td>
+					<td><a th:href="${'/game/' + game.gameId}">View</a></td>
+					<td><a th:href="${'/game/edit/' + game.gameId}">Edit</a></td>
+					<td><a th:href="${'/game/delete/' + game.gameId}">Delete</a></td>
+				</tr>
+				 
+			</table>
+
+			<form class="form-horizontal" th:object="${game}"
+				th:action="@{/game/new}" method="post">
+				<div class="row">
+					<button type="submit" class="btn btn-default">New Game</button>
+				</div>
+			</form>
+		</div>
+		<!--  <div>
 			<form class="form-horizontal">
 				<div class="form-group">
 					<label class="col-sm-2 control-label">Season Number:</label>
@@ -26,14 +58,14 @@
 						<p class="form-control-static" th:text="${season.season_name}">description</p>
 					</div>
 				</div>
-				<!-- 
+				
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Image Url:</label>
                     <div class="col-sm-10">
                         <p class="form-control-static" th:text="${product.imageUrl}">url....</p>
                     </div>
                 </div>
-                 -->
+                 
 			
 					<div class="row">
 						<a href="#" th:href="@{/seasons}"><button type="button" class="btn btn-default">Back</button>
@@ -43,7 +75,7 @@
 					
 				</form>
 			
-		</div>
+		</div> -->
 	</div>
 
 </body>

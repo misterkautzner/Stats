@@ -11,8 +11,8 @@
 <body>
 	<div class="container">
 		<!--/*/ <th:block th:include="fragments/menubar :: header"></th:block> /*/-->
-		<div th:if="${not #lists.isEmpty(games)}">
-			<h2>Games</h2>
+		<div th:if="${not #lists.isEmpty(games)}"> 
+			<!-- <h2>Games</h2> -->
 			<table class="table table-striped">
 				<tr>
 					<th>Season Number</th>
@@ -23,7 +23,7 @@
 					<th>Edit</th>
 					<th>Delete</th>
 				</tr>
-				<tr th:each="game : ${games}">
+			 	<tr th:each="game : ${games}">
 					<td th:text="${game.season_number}">season number</td>
 					<td th:text="${game.game_number}">game number</td>
 					<td th:text="${game.special_name}">description</td>
@@ -32,6 +32,7 @@
 					<td><a th:href="${'/game/edit/' + game.gameId}">Edit</a></td>
 					<td><a th:href="${'/game/delete/' + game.gameId}">Delete</a></td>
 				</tr>
+				 
 			</table>
 
 			<form class="form-horizontal" th:object="${game}"

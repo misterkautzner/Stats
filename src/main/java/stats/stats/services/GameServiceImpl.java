@@ -24,8 +24,8 @@ public class GameServiceImpl implements GameService{
 	}
 
 	@Override
-	public Game getGameById(Integer gameId) {
-		return gameRepository.findOne(gameId);
+	public Game getGameById(Integer game_id) {
+		return gameRepository.findOne(game_id);
 	}
 
 	@Override
@@ -34,8 +34,8 @@ public class GameServiceImpl implements GameService{
 	}
 
 	@Override
-	public void deleteGameById(Integer gameId) {
-		gameRepository.delete(gameId);
+	public void deleteGameById(Integer game_id) {
+		gameRepository.delete(game_id);
 	}
 
 //	@Override
@@ -57,31 +57,4 @@ public class GameServiceImpl implements GameService{
 	}
 
 
-
-//    @Autowired
-//    public void setProductRepository(ProductRepository productRepository) {
-//        this.productRepository = productRepository;
-//    }
-//
-//    @Override
-//    public Iterable<Product> listAllProducts() {
-//        return productRepository.findAll();
-//    }
-//
-//    @Override
-//    public Product getProductById(Integer id) {
-//        return productRepository.findOne(id);
-//    }
-//
-//    @Override
-//    public Product saveProduct(Product product) {
-//        return productRepository.save(product);
-//    }
-
-//    I wrote the following code
-//	@Override
-//	public void deleteProduct(Integer id) {
-//		productRepository.delete(productRepository.findOne(id));
-//		
-//	}
 }

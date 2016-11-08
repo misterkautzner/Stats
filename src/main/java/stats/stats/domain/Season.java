@@ -1,15 +1,22 @@
 package stats.domain;
 
+import java.io.Serializable;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "season")
-public class Season {
+public class Season implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,9 +26,9 @@ public class Season {
 	@Column(name = "season_name")
 	private String season_name;
 	
-//	@ManyToOne
-//	@JoinColumn(name = "gameId")
-//	private Set<Game> games;
+	@OneToMany
+	@JoinColumn(name = "game_id")
+	private Set<Game> games;
 	
 	public Integer getSeason_id() {
 		return season_id;

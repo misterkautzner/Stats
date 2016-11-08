@@ -1,6 +1,10 @@
 package stats.domain;
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -8,16 +12,19 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "game")
-public class Game {
+public class Game implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@Column(name = "game_id")
-	private int gameId;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int game_id;
 
 	@ManyToOne
 	@JoinColumn(name = "season_id")
 	private Season season;
-//	private int season_number;
+
 	@Column(name = "game_number")
 	private int game_number;
 	@Column(name = "special_name")
@@ -26,37 +33,37 @@ public class Game {
 	private java.sql.Date date;
 	
 //	public void calculateGameId() {
-//		gameId = season_number*100+game_number;
-//		//season.getSeason_number()
+//		gameId = season_number*10000+game_number;
+////		season.getSeason_number()
 //	}
-	
+//	
 //	public void breakDownGameId() {
-//		season_number = gameId/100;
-//		game_number = gameId%100;
+//		season_number = gameId/10000;
+//		game_number = gameId%10000;
 //	}
 //	@ManyToOne
 //	@JoinColumn(name = "season_number")
-//	public Season getSeason() {
-//		return season;
-//	}
+	public Season getSeason() {
+		return season;
+	}
 	
 	public void setSeason(Season season) {
 		this.season = season;
 	}
 
-	public int getGameId() {
-		return gameId;
+	public int getGame_id() {
+		return game_id;
 	}
 	
-	public void setGameId(int gameId) {
-		this.gameId = gameId;
+	public void setGame_id(int game_id) {
+		this.game_id = game_id;
 	}
 	
 	
 //	public int getSeason_number() {
 //		return season_number;
 //	}
-
+//
 //	public void setSeason_number(int season) {
 //		this.season_number = season;
 //	}
@@ -65,9 +72,9 @@ public class Game {
 		return game_number;
 	}
 
-	public Season getSeason() {
-		return season;
-	}
+//	public Season getSeason() {
+//		return season;
+//	}
 
 	public void setGame_number(int game_number) {
 		this.game_number = game_number;

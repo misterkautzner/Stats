@@ -13,60 +13,57 @@ import stats.services.GameService;
 @Controller
 public class GameController {
 
+	@Autowired
 	private GameService gameService;
 	
-//	@Autowired
+	
 //	public void setGameService(GameService gameService) {
 //		this.gameService = gameService;
 //	}
-//	
-//	@RequestMapping(value = "/games", method = RequestMethod.GET)
-//	public String list(Model model) {		// Get a list of all games
-//		model.addAttribute("games", gameService.listAllGames());	// Add them to the page ?
-//		System.out.println("Returning games:");
-//		return "games";		// Reload the page?
-//	}
-//	
-//	@RequestMapping("game/{gameId}")
-//	public String showGame(@PathVariable Integer gameId, Model model) {
-//		System.out.println("");
-//		System.out.println("");
-//		System.out.println("GameId = " + gameId);
-//		System.out.println("");
-//		System.out.println("");
-//		model.addAttribute("game", gameService.getGameById(gameId));
-//		return "gameshow";
-//	}
-//	
-//    @RequestMapping("game/edit/{gameId}")
-//    public String edit(@PathVariable Integer gameId, Model model){
-//        model.addAttribute("game", gameService.getGameById(gameId));
-//        return "gameform";
-//    }
-//
-//    @RequestMapping("game/new")
-//    public String newGame(Model model){
-//        model.addAttribute("game", new Game());	// Give a new (blank) game object to the form
-//        return "gameform";
-//    }
-//
-//    @RequestMapping(value = "game", method = RequestMethod.POST)
-//    public String saveGame(Game game){
-//
-//    	System.out.println("");
-//    	System.out.println("GameId = " + game.getGameId()+ "  season = " + game.getSeason().getSeason_number() + "  game = " + game.getGame_number());
-//    	System.out.println("");
-//    	gameService.saveGame(game);
-//
-//        return "redirect:/game/" + game.getGameId();
-//    }
-//    
-//    @RequestMapping("game/delete/{gameId}")
-//    public String deleteGame(@PathVariable Integer gameId, Model model){
-//    	gameService.deleteGameById(gameId);
-//    	model.addAttribute("games", gameService.listAllGames());
-//    	return "redirect:/games";
-//    }
+	
+	@RequestMapping(value = "/games", method = RequestMethod.GET)
+	public String list(Model model) {		// Get a list of all games
+		model.addAttribute("games", gameService.listAllGames());	// Add them to the page ?
+		System.out.println("Returning games:");
+		return "games";		// Reload the page?
+	}
+	
+	@RequestMapping("game/{game_id}")
+	public String showGame(@PathVariable Integer game_id, Model model) {
+		System.out.println("");
+		System.out.println("");
+		System.out.println("GameId = " + game_id);
+		System.out.println("");
+		System.out.println("");
+		model.addAttribute("game", gameService.getGameById(game_id));
+		return "gameshow";
+	}
+	
+    @RequestMapping("game/edit/{game_id}")
+    public String edit(@PathVariable Integer game_id, Model model){
+        model.addAttribute("game", gameService.getGameById(game_id));
+        return "gameform";
+    }
+
+    @RequestMapping("game/new")
+    public String newGame(Model model){
+        model.addAttribute("game", new Game());	// Give a new (blank) game object to the form
+        return "gameform";
+    }
+
+    @RequestMapping(value = "game", method = RequestMethod.POST)
+    public String saveGame(Game game){
+    	gameService.saveGame(game);
+
+        return "redirect:/game/" + game.getGame_id();
+    }
+    
+    @RequestMapping("game/delete/{game_id}")
+    public String deleteGame(@PathVariable Integer game_id, Model model){
+    	gameService.deleteGameById(game_id);
+    	model.addAttribute("games", gameService.listAllGames());
+    	return "redirect:/games";
+    }
     
     
 		
