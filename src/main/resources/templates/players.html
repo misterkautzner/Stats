@@ -1,0 +1,47 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+<title>Players</title>
+
+<!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+	<div class="container">
+		<!--/*/ <th:block th:include="fragments/menubar :: header"></th:block> /*/-->
+		<div > <!-- th:if="${not #lists.isEmpty(seasons)}"> -->
+			<h2>Players</h2>
+			<table class="table table-striped">
+				<tr>
+					<th>Player Name</th>
+					<th>Phone Number</th>
+					<th>View</th>
+					<th>Edit</th>
+					<th>Delete</th>
+				</tr>
+				<tr th:each="player : ${players}">
+					<td th:text="${player.player_name}">player name</td>
+					<td th:text="${player.phone_number}">phone number</td>
+					<td><a th:href="${'/player/' + player.player_id}">View</a></td>
+					<td><a th:href="${'/player/edit/' + player.player_id}">Edit</a></td>
+					<td><a th:href="${'/player/delete/' + player.player_id}">Delete</a></td>
+				</tr>
+			</table>
+			<!-- 
+			<ul class="nav navbar-nav">
+				<li><a href="#" th:href="@{/season/new}">New Season</a></li>
+			</ul>
+			 -->
+			<form class="form-horizontal" th:object="${player}"
+				th:action="@{/player/new}" method="post">
+				<div class="row">
+					<button type="submit" class="btn btn-default">New Player</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+</body>
+</html>

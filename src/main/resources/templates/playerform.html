@@ -15,15 +15,15 @@
         <form class="form-horizontal" th:object="${player}" th:action="@{/player}" method="post">
          <input type="hidden" th:field="*{player_id}"/> 
             <div class="form-group">
-                <label class="col-sm-2 control-label">Season Number:</label>
+                <label class="col-sm-2 control-label">Player Name:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{season_number}"/>
+                    <input type="text" class="form-control" th:field="*{player_name}"/>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">Season Name:</label>
+                <label class="col-sm-2 control-label">Phone Number:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{season_name}"/>
+                    <input type="text" class="form-control" th:field="*{phone_number}"/>
                 </div>
             </div>
             <div class="row">
