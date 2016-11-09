@@ -28,9 +28,9 @@
 					<td th:text="${game.game_number}">game number</td>
 					<td th:text="${game.special_name}">description</td>
 					<td th:text="${game.date}">date</td>
-					<td><a th:href="${'/game/' + game.gameId}">View</a></td>
-					<td><a th:href="${'/game/edit/' + game.gameId}">Edit</a></td>
-					<td><a th:href="${'/game/delete/' + game.gameId}">Delete</a></td>
+					<td><a th:href="${'/game/' + game.game_id}">View</a></td>
+					<td><a th:href="${'/game/edit/' + game.game_id}">Edit</a></td>
+					<td><a th:href="${'/game/delete/' + game.game_id}">Delete</a></td>
 				</tr>
 				 
 			</table>

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import stats.domain.Game;
 import stats.domain.Season;
+import stats.services.GameService;
 import stats.services.SeasonService;
 
 @Controller
@@ -39,9 +40,33 @@ public class SeasonController {
     
     @RequestMapping("season/{season_id}")
     public String showSeason(@PathVariable Integer season_id, Model model){
+//    	System.out.println("");
+//    	System.out.println("Entering showSeason()");
+//    	System.out.println("");
     	Season thisSeason = seasonService.getSeasonById(season_id);
-    	Set<Game> theseGames = thisSeason.getGames();
-    	model.addAttribute("games", theseGames);
+    	
+//    	System.out.println("");
+//    	System.out.println("GameService coming...");
+//    	Set<Game> theseGames = thisSeason.getGames();
+    	//GameService gameService = GameController.getGameService();
+//    	System.out.println("Past Gameservice!!!");
+    	//Set<Game> games = (Set<Game>) gameService.listAllGames();
+//    	System.out.println("games are set!");
+//    	System.out.println("");
+    	
+//    	for (Game game : games) {
+//    		if (game.getSeason_number() != thisSeason.getSeason_number()) {
+//    			games.remove(game);
+//    		}
+//    	}
+    	
+//    	for (Game game : games) {
+//    		System.out.println("||||");
+//    		System.out.println("||||  Game = " + game.getSpecial_name());
+//    		System.out.println("||||");
+//    	}
+
+//    	model.addAttribute("games", games);
         model.addAttribute("season", thisSeason);
         return "seasonshow";
     }

@@ -50,11 +50,15 @@ public class GameServiceImpl implements GameService{
 //		return seasonGames;
 //	}
 
-	@Override
-	public Season getSeasonByNumber(Integer season_number) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public Season getSeasonByNumber(Integer season_number) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+	
+//	@Override Season getSeasonById(Integer season_id) {
+//		return seasonRepository.
+//	}
 
 
 }

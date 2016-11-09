@@ -9,11 +9,11 @@ public interface GameService {
 	
 //	Iterable<Game> listBySeason(Integer season_number); // Implement
 	
-	Game getGameById(Integer gameId);
+	Game getGameById(Integer game_id);
 	
 	Game saveGame(Game game);
 	
-	void deleteGameById(Integer gameId);
+	void deleteGameById(Integer game_id);
 	
-	Season getSeasonByNumber(Integer season_number);
+//	Season getSeasonByNumber(Integer season_number);
 }

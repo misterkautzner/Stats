@@ -21,12 +21,20 @@ public class GameController {
 //		this.gameService = gameService;
 //	}
 	
-//	@RequestMapping(value = "/games", method = RequestMethod.GET)
-//	public String list(Model model) {		// Get a list of all games
-//		model.addAttribute("games", gameService.listAllGames());	// Add them to the page ?
-//		System.out.println("Returning games:");
-//		return "games";		// Reload the page?
-//	}
+	public GameService getGameService() {
+		return gameService;
+	}
+				  //value was "games"
+	@RequestMapping(value = "season/{season_id}", method = RequestMethod.GET)
+	public String list(@PathVariable Integer season_id, Model model) {		// Get a list of all games
+		//Season season = 
+//		for (Game game : gameService.listAllGames()) {
+//			if (game.getSeason_number() == )
+//		}
+		model.addAttribute("games", gameService.listAllGames());	// Add them to the page ?
+		System.out.println("Returning games:");
+		return "games";		// Reload the page?
+	}
 	
 	@RequestMapping("game/{game_id}")
 	public String showGame(@PathVariable Integer game_id, Model model) {
@@ -69,40 +77,5 @@ public class GameController {
     	return "redirect:/games";
     }
     
-    
-		
-		// Format the date
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//		Date regDate = null;
-//		try {
-//			regDate = sdf.parse(date);
-//		} catch (ParseException e) {
-//			e.printStackTrace();
-//			System.out.println("There's a problem with the date");
-//		}
-//		java.sql.Date sqlDate = new java.sql.Date(regDate.getTime());
-//
-//		// Create a Game object
-//		Game newGame = new Game(Integer.parseInt(season_number), Integer.parseInt(game_number), special_name, sqlDate);
-//
-//		// Do I want this line?
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
-//		
-//		// Pass most of this information to the next page
-//	}
-    
-	
-//	@RequestMapping("/")
-//	public String enterGame(Map<String, Object> model) {
-////		model.put("time", new Date());
-//		return "EnterGame";
-//	}
-
-
-	
-//	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//
-//		processRequest(request, response);
-//	}
 
 }
