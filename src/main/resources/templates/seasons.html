@@ -24,9 +24,9 @@
 				<tr th:each="season : ${seasons}">
 					<td th:text="${season.season_number}">season number</td>
 					<td th:text="${season.season_name}">description</td>
-					<td><a th:href="${'/season/' + season.season_id}">View</a></td>
-					<td><a th:href="${'/season/edit/' + season.season_id}">Edit</a></td>
-					<td><a th:href="${'/season/delete/' + season.season_id}">Delete</a></td>
+					<td><a th:href="${'/season/' + season.season_number}">View</a></td>
+					<td><a th:href="${'/season/edit/' + season.season_number}">Edit</a></td>
+					<td><a th:href="${'/season/delete/' + season.season_number}">Delete</a></td>
 				</tr>
 			</table>
 			<!-- 

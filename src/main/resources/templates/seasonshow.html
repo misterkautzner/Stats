@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
 
-<title>Season Entered</title>
+<title>Season</title>
 
 <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
@@ -37,7 +37,7 @@
 			</table>
 															<!-- These two are replaced in line below -->
 			<form class="form-horizontal" th:object="${game}" th:action="@{/game/new}" method="post">
-				<!-- th:action="@{'/season/' + season.season_id + '/game/new'}" method="post"> -->
+				<!-- th:action="@{'/season/' + season.season_number + '/game/new'}" method="post"> -->
 				<div class="row">
 					<button type="submit" class="btn btn-default">New Game</button>
 				</div>

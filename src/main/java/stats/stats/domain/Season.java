@@ -19,9 +19,6 @@ public class Season implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer season_id;
-
 	@Column(name = "season_number")
 	private Integer season_number;
 	@Column(name = "season_name")
@@ -39,15 +36,6 @@ public class Season implements Serializable {
 	public void setGames(Set<Game> games) {
 		this.games = games;
 	}
-	
-	public Integer getSeason_id() {
-		return season_id;
-	}
-
-	public void setSeason_id(Integer season_id) {
-		this.season_id = season_id;
-	}
-
 	
 	public Integer getSeason_number() {
 		return season_number;

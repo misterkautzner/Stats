@@ -23,8 +23,11 @@ public class SeasonServiceImpl implements SeasonService {
 	}
 
 	@Override
-	public Season getSeasonById(Integer season_id) {
-		return seasonRepository.findOne(season_id);
+	public Season getSeasonByNumber(Integer season_number) {
+//		System.out.println("SeasonServiceImpl : getSeasonByNumber   = " + season_number);
+//		Season season = seasonRepository.findOne(season_number);
+//		System.out.println("SeasonServiceImpl : getSeasonByNumber   = " + season.getSeason_name());
+		return seasonRepository.findOne(season_number);
 	}
 
 	@Override
@@ -62,8 +65,8 @@ public class SeasonServiceImpl implements SeasonService {
 //	}
 
 	@Override
-	public void deleteSeasonById(Integer season_id) {
-		seasonRepository.delete(seasonRepository.findOne(season_id));
+	public void deleteSeasonByNumber(Integer season_number) {
+		seasonRepository.delete(seasonRepository.findOne(season_number));
 	}
 
 

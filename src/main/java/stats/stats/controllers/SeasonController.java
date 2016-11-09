@@ -32,21 +32,21 @@ public class SeasonController {
         return "seasons";
     }
 
-//    @RequestMapping("season/{season_id}")
-//    public String showSeason(@PathVariable Integer season_id, Model model){
-//        model.addAttribute("season", seasonService.getSeasonById(season_id));
+//    @RequestMapping("season/{season_number}")
+//    public String showSeason(@PathVariable Integer season_number, Model model){
+//        model.addAttribute("season", seasonService.getSeasonById(season_number));
 //        return "seasonshow";
 //    }
     
-    @RequestMapping("season/{season_id}")
-    public String showSeason(@PathVariable Integer season_id, Model model){
-//    	System.out.println("");
-//    	System.out.println("Entering showSeason()");
-//    	System.out.println("");
-    	Season thisSeason = seasonService.getSeasonById(season_id);
+    @RequestMapping("season/{season_number}")
+    public String showSeason(@PathVariable Integer season_number, Model model){
+    	System.out.println("");
+    	System.out.println("Entering showSeason()");
+    	System.out.println("");
+    	Season thisSeason = seasonService.getSeasonByNumber(season_number);
     	
-//    	System.out.println("");
-//    	System.out.println("GameService coming...");
+    	System.out.println("");
+    	System.out.println("Season: " + season_number + "   : " + thisSeason.getSeason_name());
 //    	Set<Game> theseGames = thisSeason.getGames();
     	//GameService gameService = GameController.getGameService();
 //    	System.out.println("Past Gameservice!!!");
@@ -73,9 +73,9 @@ public class SeasonController {
     
 	
 
-    @RequestMapping("season/edit/{season_id}")
-    public String edit(@PathVariable Integer season_id, Model model){
-        model.addAttribute("season", seasonService.getSeasonById(season_id));
+    @RequestMapping("season/edit/{season_number}")
+    public String edit(@PathVariable Integer season_number, Model model){
+        model.addAttribute("season", seasonService.getSeasonByNumber(season_number));
         return "seasonform";
     }
 
@@ -90,12 +90,12 @@ public class SeasonController {
 
         seasonService.saveSeason(season);
 
-        return "redirect:/season/" + season.getSeason_id();
+        return "redirect:/season/" + season.getSeason_number();
     }
 
-    @RequestMapping("season/delete/{season_id}")
-    public String deleteSeason(@PathVariable Integer season_id, Model model){
-    	seasonService.deleteSeasonById(season_id);
+    @RequestMapping("season/delete/{season_number}")
+    public String deleteSeason(@PathVariable Integer season_number, Model model){
+    	seasonService.deleteSeasonByNumber(season_number);
     	model.addAttribute("seasons", seasonService.listAllSeasons());
     	return "redirect:/seasons";
     }

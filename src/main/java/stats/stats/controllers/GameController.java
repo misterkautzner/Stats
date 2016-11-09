@@ -1,5 +1,7 @@
 package stats.controllers;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,13 +27,20 @@ public class GameController {
 		return gameService;
 	}
 				  //value was "games"
-	@RequestMapping(value = "season/{season_id}", method = RequestMethod.GET)
-	public String list(@PathVariable Integer season_id, Model model) {		// Get a list of all games
-		//Season season = 
-//		for (Game game : gameService.listAllGames()) {
-//			if (game.getSeason_number() == )
-//		}
-		model.addAttribute("games", gameService.listAllGames());	// Add them to the page ?
+	@RequestMapping(value = "season/{season_number}", method = RequestMethod.GET)
+	public String list(@PathVariable Integer season_number, Model model) {		// Get a list of all games
+		ArrayList<Game> seasonGames = (ArrayList<Game>) gameService.listAllGames();
+		for (Game game : seasonGames) {
+			
+			System.out.println("");
+			System.out.println("game.getSeason_number() = " + game.getSeason_number() + "   vs " + season_number);
+			System.out.println("");
+			
+			if (game.getSeason_number() != season_number) {
+				seasonGames.remove(game);
+			}
+		}
+		model.addAttribute("games", seasonGames);	// Add them to the page ?
 		System.out.println("Returning games:");
 		return "games";		// Reload the page?
 	}
@@ -56,9 +65,9 @@ public class GameController {
     @RequestMapping("/game/new")
     public String newGame(Model model){
     	System.out.println("");
-    	//System.out.println("SEASON ID = " + season_id);
+    	//System.out.println("SEASON ID = " + season_number);
     	System.out.println("");
-    	// ?? model.addAttribute(season, seasonService(season_id));
+    	// ?? model.addAttribute(season, seasonService(season_number));
         model.addAttribute("game", new Game());	// Give a new (blank) game object to the form
         return "gameform";
     }
