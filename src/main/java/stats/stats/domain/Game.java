@@ -26,7 +26,7 @@ public class Game implements Serializable {
 //	private int season_id;
 //	private Season season;
 	
-	@JoinColumn(name="season_number")
+	@JoinColumn(name="season_number", table = "season")
 	private int season_number;
 
 	@Column(name = "game_number")
