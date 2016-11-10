@@ -39,37 +39,30 @@ public class SeasonController {
 //    }
     
     @RequestMapping("season/{season_number}")
-    public String showSeason(@PathVariable Integer season_number, Model model){
+    public void /*String*/ showSeason(@PathVariable Integer season_number, Model model){
     	System.out.println("");
     	System.out.println("Entering showSeason()");
     	System.out.println("");
     	Season thisSeason = seasonService.getSeasonByNumber(season_number);
     	
-    	System.out.println("");
+    	System.out.println("----------------------------------------------------------------------------");
     	System.out.println("Season: " + season_number + "   : " + thisSeason.getSeason_name());
+    	
 //    	Set<Game> theseGames = thisSeason.getGames();
-    	//GameService gameService = GameController.getGameService();
-//    	System.out.println("Past Gameservice!!!");
-    	//Set<Game> games = (Set<Game>) gameService.listAllGames();
-//    	System.out.println("games are set!");
-//    	System.out.println("");
-    	
-//    	for (Game game : games) {
-//    		if (game.getSeason_number() != thisSeason.getSeason_number()) {
-//    			games.remove(game);
-//    		}
-//    	}
-    	
-//    	for (Game game : games) {
-//    		System.out.println("||||");
-//    		System.out.println("||||  Game = " + game.getSpecial_name());
-//    		System.out.println("||||");
-//    	}
-
-//    	model.addAttribute("games", games);
         model.addAttribute("season", thisSeason);
-        return "seasonshow";
+        //return "seasonshow";
     }
+    
+  
+  public Season getSeason(Integer season_number){
+  	System.out.println("");
+  	System.out.println("Entering showSeason()");
+  	System.out.println("");
+  	Season season = seasonService.getSeasonByNumber(season_number);
+  	System.out.println("----------------------------------------------------------------------------");
+  	System.out.println("Season: " + season_number + "   : " + season.getSeason_name());
+      return season;
+  }
     
 	
 

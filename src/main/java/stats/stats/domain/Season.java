@@ -25,7 +25,6 @@ public class Season implements Serializable {
 	private String season_name;
 	
 	@OneToMany
-	@JoinColumn(name = "game_id")
 	private Set<Game> games;
 	
 	

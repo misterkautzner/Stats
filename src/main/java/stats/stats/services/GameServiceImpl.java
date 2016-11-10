@@ -1,10 +1,11 @@
 package stats.services;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import stats.domain.Game;
-import stats.domain.Season;
 import stats.repositories.GameRepository;
 
 @Service
@@ -38,17 +39,17 @@ public class GameServiceImpl implements GameService{
 		gameRepository.delete(game_id);
 	}
 
-//	@Override
-//	public Iterable<Game> listBySeason(Integer season_number) {  
-//		Iterable<Game> allGames = gameRepository.findAll();
-//		ArrayList<Game> seasonGames = new ArrayList<Game>();
-//		for(Game game : allGames) {
-//			if(game.getSeason_number() == season_number) {
-//				seasonGames.add(game);
-//			}
-//		}
-//		return seasonGames;
-//	}
+	@Override
+	public ArrayList<Game> listBySeason(Integer season_number) {
+		return gameRepository.findAllSeason(season_number);
+	}
+
+	@Override
+	public Game findGameBySeasonAndGame(Integer season_number, Integer game_number) {
+		return gameRepository.findOneBySeasonAndGame(season_number, game_number);
+	}
+
+
 
 //	@Override
 //	public Season getSeasonByNumber(Integer season_number) {
