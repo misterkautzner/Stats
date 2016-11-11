@@ -24,6 +24,8 @@
 					<th>Shots on Goal</th>
 					<th>Goals</th>
 					<th>Saves</th>
+					<th>Edit</th>
+					<th>Delete</th>
 				</tr>
 				<tr th:each="stat : ${stats}">
 					<td th:text="${stat.player_id}">player number</td>
@@ -31,6 +33,8 @@
 					<td th:text="${stat.sog}">sog</td>
 					<td th:text="${stat.goals}">goals</td>
 					<td th:text="${stat.saves}">saves</td>
+					<td><a th:href="${'/season/' + game.season_number + '/game/' + game.game_id + '/stat/' + stat.stat_id + '/edit'}">Edit</a></td>
+					<td><a th:href="${'/season/' + game.season_number + '/game/' + game.game_id + '/stat/' + stat.stat_id + '/delete/'}">Delete</a></td>
 				</tr>
 			</table>
 			<div class="row">

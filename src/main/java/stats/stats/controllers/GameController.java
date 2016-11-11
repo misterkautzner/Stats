@@ -64,7 +64,7 @@ public class GameController {
         return "redirect:/season/" + game.getSeason_number() + "/game/" + game.getGame_id();
     }
     
-    @RequestMapping("season/{seaon_number}/game/{game_id}/delete")
+    @RequestMapping("season/{season_number}/game/{game_id}/delete")
     public String deleteGame(@PathVariable Integer game_id, Model model){
     	Game game = gameService.getGameById(game_id);
     	gameService.deleteGameById(game_id);

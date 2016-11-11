@@ -24,6 +24,7 @@
                         <p class="form-control-static" th:text="${player.phone_number}">phone number</p>
                     </div>
                 </div>
+                
 <!--    Upload a picture??
              <div class="form-group">
                     <label class="col-sm-2 control-label">Image Url:</label>
@@ -33,6 +34,11 @@
                 </div>
                  -->
             </form>
+            <div class="row">
+				<a href="#" th:href="${'/players'}">
+					<button type="button" class="btn btn-default">Back</button>
+				</a>
+			</div>
     </div>
 </div>
 

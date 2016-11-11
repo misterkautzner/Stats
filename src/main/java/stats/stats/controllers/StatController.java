@@ -50,4 +50,19 @@ public class StatController {
 	}
 	
 	
+	@RequestMapping("/season/{season_number}/game/{game_id}/stat/{stat_id}/edit")
+	public String editStat(@PathVariable Integer stat_id, Model model) {
+		model.addAttribute("stat", statService.getStatById(stat_id));
+		return "statform";
+	}
+	
+	
+	@RequestMapping("/season/{season_number}/game/{game_id}/stat/{stat_id}/delete")
+	public String deleteStat(@PathVariable Integer season_number, @PathVariable Integer game_id, @PathVariable Integer stat_id, Model model) {
+		statService.deleteStatById(stat_id);
+		model.addAttribute("stats", statService.listStatsByGame(game_id));
+		return "redirect:/season/" + season_number + "/game/" + game_id;
+	}
+	
+	
 }
