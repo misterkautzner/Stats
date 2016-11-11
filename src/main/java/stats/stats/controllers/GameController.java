@@ -62,28 +62,13 @@ public class GameController {
 
     @RequestMapping(value = "game", method = RequestMethod.POST)
     public String saveGame(Game game){
-//    	Game temp = gameService.findGameBySeasonAndGame(game.getSeason_number(), game.getGame_number());
-//    	    	System.out.println("");
-//    	System.out.println("GameController... saving game_id = " + game.getGame_id());
-//    	System.out.println("");
-    	int gameId;
-//    	if (temp == null) {
+
     		gameService.saveGame(game);
-    		gameId = game.getGame_id();
-//    	}
-//    	else {
-//    		temp.setSeason_number(game.getSeason_number());
-//    		temp.setGame_number(game.getGame_number());
-//    		gameService.saveGame(temp);
-//    		gameId = temp.getGame_id();
-//    	}
-//    	System.out.println("");
-//    	System.out.println("GameController... saving game_id = " + game.getGame_id());
-//    	System.out.println("");
-        return "redirect:/game/" + gameId;
+
+        return "redirect:/season/" + game.getSeason_number() + "/game/" + game.getGame_id();
     }
     
-    @RequestMapping("season/{seaon_number}/game/delete/{game_id}")
+    @RequestMapping("season/{seaon_number}/game/{game_id}/delete")
     public String deleteGame(@PathVariable Integer game_id, Model model){
     	Game game = gameService.getGameById(game_id);
     	gameService.deleteGameById(game_id);

@@ -82,7 +82,9 @@ public class SeasonController {
     public String saveSeason(Season season){
 
         seasonService.saveSeason(season);
-
+        System.out.println("");
+        System.out.println("Trying to 'redirect:/season/" + season.getSeason_number() +"'");
+        System.out.println("");
         return "redirect:/season/" + season.getSeason_number();
     }
 
