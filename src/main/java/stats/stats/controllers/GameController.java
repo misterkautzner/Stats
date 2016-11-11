@@ -40,11 +40,7 @@ public class GameController {
 	}			//"games"
 	
 	
-	@RequestMapping("/season/{season_number}/game/{game_id}")
-	public String showGame(@PathVariable Integer season_number, @PathVariable Integer game_id, Model model) {
-		model.addAttribute("game", gameService.getGameById(game_id));
-		return "gameshow";
-	}
+
 	
     @RequestMapping("season/{season_number}/game/{game_id}/edit")
     public String edit(@PathVariable Integer season_number, @PathVariable Integer game_id, Model model){

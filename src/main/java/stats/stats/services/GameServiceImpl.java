@@ -41,7 +41,7 @@ public class GameServiceImpl implements GameService{
 
 	@Override
 	public ArrayList<Game> listBySeason(Integer season_number) {
-		return gameRepository.findAllSeason(season_number);
+		return gameRepository.findAllBySeason(season_number);
 	}
 
 	@Override

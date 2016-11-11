@@ -1,5 +1,6 @@
 package stats.domain;
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,12 +21,6 @@ public class Game implements Serializable {
 	@Column(name = "game_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int game_id;
-
-//	@ManyToOne
-	
-//	@JoinColumn(name = "season_id")
-//	private int season_id;
-//	private Season season;
 	
 	@JoinColumn(name="season_number", table = "season")
 	private int season_number;
@@ -35,6 +31,9 @@ public class Game implements Serializable {
 	private String special_name;
 	@Column(name = "game_date")
 	private java.sql.Date date;
+	
+	@OneToMany
+	private Set<Stat> stats;
 	
 	
 //	public int getSeason_id() {

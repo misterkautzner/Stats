@@ -11,15 +11,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "stats")
-public class Stats implements Serializable {
+@Table(name = "stat")
+public class Stat implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name = "stats_id")
+	@Column(name = "stat_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int stats_id;
+	private int stat_id;
 	
 	@JoinColumn(name = "game_id", table = "game")
 	private int game_id;
@@ -37,11 +37,11 @@ public class Stats implements Serializable {
 	private int saves;
 	
 	
-	public int getStats_id() {
-		return stats_id;
+	public int getStat_id() {
+		return stat_id;
 	}
-	public void setStats_id(int stats_id) {
-		this.stats_id = stats_id;
+	public void setStat_id(int stat_id) {
+		this.stat_id = stat_id;
 	}
 	public int getGame_id() {
 		return game_id;
