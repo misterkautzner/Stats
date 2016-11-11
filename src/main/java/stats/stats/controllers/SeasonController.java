@@ -66,7 +66,7 @@ public class SeasonController {
     
 	
 
-    @RequestMapping("season/edit/{season_number}")
+    @RequestMapping("season/{season_number}/edit")
     public String edit(@PathVariable Integer season_number, Model model){
         model.addAttribute("season", seasonService.getSeasonByNumber(season_number));
         return "seasonform";
@@ -86,7 +86,7 @@ public class SeasonController {
         return "redirect:/season/" + season.getSeason_number();
     }
 
-    @RequestMapping("season/delete/{season_number}")
+    @RequestMapping("season/{season_number}/delete")
     public String deleteSeason(@PathVariable Integer season_number, Model model){
     	seasonService.deleteSeasonByNumber(season_number);
     	model.addAttribute("seasons", seasonService.listAllSeasons());
