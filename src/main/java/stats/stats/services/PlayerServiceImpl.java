@@ -1,5 +1,7 @@
 package stats.services;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,7 +39,11 @@ public class PlayerServiceImpl implements PlayerService {
 	@Override
 	public void deletePlayer(Integer id) {
 		playerRepository.delete(playerRepository.findOne(id));
-		
+	}
+
+	@Override
+	public ArrayList<String> listAllPlayerNames() {
+		return playerRepository.findAllPlayerNames();
 	}
 }
 

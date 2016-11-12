@@ -29,11 +29,7 @@
 					<td><a th:href="${'/season/' + season.season_number + '/delete/'}">Delete</a></td>
 				</tr>
 			</table>
-			<!-- 
-			<ul class="nav navbar-nav">
-				<li><a href="#" th:href="@{/season/new}">New Season</a></li>
-			</ul>
-			 -->
+			
 			<form class="form-horizontal" th:object="${season}"
 				th:action="@{/season/new}" method="post">
 				<div class="row">

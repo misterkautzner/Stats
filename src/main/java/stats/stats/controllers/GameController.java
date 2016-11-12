@@ -29,7 +29,7 @@ public class GameController {
 	public GameService getGameService() {
 		return gameService;
 	}
-				  //value was "games"
+				
 	@RequestMapping(value = "season/{season_number}", method = RequestMethod.GET)
 	public /*void/*/String list(@PathVariable Integer season_number, Model model) {		// Get a list of all games
 		ArrayList<Game> seasonGames = gameService.listBySeason(season_number);

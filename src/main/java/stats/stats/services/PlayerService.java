@@ -1,5 +1,7 @@
 package stats.services;
 
+import java.util.ArrayList;
+
 import stats.domain.Player;
 
 public interface PlayerService {
@@ -10,5 +12,7 @@ public interface PlayerService {
 	Player savePlayer(Player player);
 	
 	void deletePlayer(Integer id);
+	
+	ArrayList<String> listAllPlayerNames();
 
 }

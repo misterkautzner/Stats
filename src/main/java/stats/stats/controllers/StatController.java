@@ -1,6 +1,8 @@
 package stats.controllers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import stats.domain.Game;
+import stats.domain.Player;
 import stats.domain.Stat;
 import stats.services.GameService;
+import stats.services.PlayerService;
 import stats.services.StatService;
 
 @Controller
@@ -21,22 +25,38 @@ public class StatController {
 	StatService statService;
 	@Autowired
 	GameService gameService;
+	@Autowired
+	PlayerService playerService;
 	
 	@RequestMapping("/season/{season_number}/game/{game_id}/stat/new")
 	public String newStat(@PathVariable("season_number") Integer season_number, @PathVariable("game_id")
 	Integer game_id, Model model) {
+		//ArrayList<String> playerNames = playerService.listAllPlayerNames();
+		ArrayList<Player> players = (ArrayList<Player>) playerService.listAllPlayers();
+		Map<Integer, String> playerMap = new HashMap<Integer, String>();
+		
+		for(Player player : players) {
+			playerMap.put(player.getPlayer_id(), player.getPlayer_name());
+		}
+		
 		Stat newStat = new Stat();
 		newStat.setGame_id(game_id);
+		
+//		System.out.println("");
+//		for(Integer i : playerMap.keySet()) {
+//			System.out.println("(" + i + ", " + playerMap.get(i) + ")");
+//		}
+//		System.out.println("");
+		
+		model.addAttribute("players", playerMap);
 		model.addAttribute("stat", newStat);
 		return "statform";
 	}
 	
     @RequestMapping(value = "stat", method = RequestMethod.POST)
     public String saveStat(Stat stat){
-
-    		statService.saveStat(stat);
-    		Game game = gameService.getGameById(stat.getGame_id());
-
+    	statService.saveStat(stat);
+    	Game game = gameService.getGameById(stat.getGame_id());
         return "redirect:/season/" + game.getSeason_number() + "/game/" + game.getGame_id();
     }
     
