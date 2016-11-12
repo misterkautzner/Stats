@@ -10,7 +10,7 @@ import stats.domain.Stat;
 
 @Repository
 public interface StatRepository extends JpaRepository <Stat, Integer>{
-
-	@Query("SELECT s FROM Stat s WHERE s.game_id = ?#{[0]}")
+		//"SELECT s FROM Stat s WHERE s.game_id = ?#{[0]}"
+	@Query("SELECT s FROM Stat s WHERE s.game.game_id = ?#{[0]}")
 	public ArrayList<Stat> findAllByGameId(Integer game_id);
 }

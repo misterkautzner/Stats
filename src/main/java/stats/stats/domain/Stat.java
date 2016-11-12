@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,11 +22,13 @@ public class Stat implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int stat_id;
 	
-	@JoinColumn(name = "game_id", table = "game")
-	private int game_id;
+	@ManyToOne
+	@JoinColumn(name = "game_id")
+	private Game game;
 	
-	@JoinColumn(name = "player_id", table = "player")
-	private int player_id;
+	@ManyToOne
+	@JoinColumn(name = "player_id")
+	private Player player;
 	
 	@Column(name = "team")
 	private int team;
@@ -43,17 +46,18 @@ public class Stat implements Serializable {
 	public void setStat_id(int stat_id) {
 		this.stat_id = stat_id;
 	}
-	public int getGame_id() {
-		return game_id;
+	public Game getGame() {
+		return game;
 	}
-	public void setGame_id(int game_id) {
-		this.game_id = game_id;
+	public void setGame(Game game) {
+		this.game = game;
 	}
-	public int getPlayer_id() {
-		return player_id;
+	
+	public Player getPlayer() {
+		return player;
 	}
-	public void setPlayer_id(int player_id) {
-		this.player_id = player_id;
+	public void setPlayer(Player player) {
+		this.player = player;
 	}
 	public int getTeam() {
 		return team;

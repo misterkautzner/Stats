@@ -24,9 +24,6 @@ public class Player {
 	
 	@Column(name="phone_number")
 	private String phone_number;
-
-	@OneToMany
-	private Set<Stat> stats;
 	
 	
 	public int getPlayer_id() {

@@ -30,25 +30,21 @@ public class StatController {
 	@RequestMapping("/season/{season_number}/game/{game_id}/stat/new")
 	public String newStat(@PathVariable("season_number") Integer season_number, @PathVariable("game_id")
 	Integer game_id, Model model) {
-		//ArrayList<String> playerNames = playerService.listAllPlayerNames();
 		List<Player> players = playerService.listAllPlayers();
-//		Map<Integer, String> playerMap = new HashMap<Integer, String>();
-//		
-//		for(Player player : players) {
-//			playerMap.put(player.getPlayer_id(), player.getPlayer_name());
-//		}
-		
 		Stat newStat = new Stat();
-		newStat.setGame_id(game_id);
-		
-//		System.out.println("");
-//		for(Integer i : playerMap.keySet()) {
-//			System.out.println("(" + i + ", " + playerMap.get(i) + ")");
-//		}
-//		System.out.println("");
-		
+		Game newGame = new Game();
+		newGame.setGame_id(game_id);
+		newStat.setGame(newGame);
 		model.addAttribute("players", players);
 		model.addAttribute("stat", newStat);
+		return "statform";
+	}
+	
+	@RequestMapping("/season/{season_number}/game/{game_id}/stat/{stat_id}/edit")
+	public String editStat(@PathVariable Integer stat_id, Model model) {
+		List<Player> players = playerService.listAllPlayers();
+		model.addAttribute("players", players);
+		model.addAttribute("stat", statService.getStatById(stat_id));
 		return "statform";
 	}
 	
@@ -56,7 +52,7 @@ public class StatController {
     public String saveStat(Stat stat){
     	System.out.println("stat = " + stat);
     	statService.saveStat(stat);
-    	Game game = gameService.getGameById(stat.getGame_id());
+    	Game game = gameService.getGameById(stat.getGame().getGame_id());
         return "redirect:/season/" + game.getSeason_number() + "/game/" + game.getGame_id();
     }
     
@@ -67,13 +63,6 @@ public class StatController {
 		model.addAttribute("game", gameService.getGameById(game_id));
 		model.addAttribute("stats", gameStats);
 		return "gameshow";
-	}
-	
-	
-	@RequestMapping("/season/{season_number}/game/{game_id}/stat/{stat_id}/edit")
-	public String editStat(@PathVariable Integer stat_id, Model model) {
-		model.addAttribute("stat", statService.getStatById(stat_id));
-		return "statform";
 	}
 	
 	

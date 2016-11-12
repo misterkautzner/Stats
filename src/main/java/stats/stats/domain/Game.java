@@ -32,8 +32,8 @@ public class Game implements Serializable {
 	@Column(name = "game_date")
 	private java.sql.Date date;
 	
-	@OneToMany
-	private Set<Stat> stats;
+//	@OneToMany
+//	private Set<Stat> stats;
 	
 	
 //	public int getSeason_id() {

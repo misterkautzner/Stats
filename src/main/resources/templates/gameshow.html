@@ -28,7 +28,7 @@
 					<th>Delete</th>
 				</tr>
 				<tr th:each="stat : ${stats}">
-					<td th:text="${stat.player_id}">player number</td>
+					<td th:text="${stat.player.player_name}">player name</td>
 					<td th:text="${stat.team}">team</td>
 					<td th:text="${stat.sog}">sog</td>
 					<td th:text="${stat.goals}">goals</td>

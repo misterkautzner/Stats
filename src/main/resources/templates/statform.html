@@ -11,12 +11,12 @@
 		<div>
 			<form class="form-horizontal" th:object="${stat}" th:action="@{/stat}" method="post">
 			<input type="hidden" th:field="*{stat_id}"/>
-			<input type="hidden" th:field="*{game_id}"/> 
+			<input type="hidden" th:field="*{game.game_id}"/> 
 				
 			<div class="form-group">
 	 				<label class="col-sm-2 control-label">Player (Dropdown)</label>
 	 				<div class="col-sm-10">
-						<select th:field="*{player_id}">
+						<select th:field="*{player.player_id}">
 							<option th:each="player : ${players}" th:text="${player.player_name}"
 								  th:value="${player.player_id}"></option>
 						</select>
