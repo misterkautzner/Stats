@@ -1,8 +1,7 @@
 package stats.controllers;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,12 +31,12 @@ public class StatController {
 	public String newStat(@PathVariable("season_number") Integer season_number, @PathVariable("game_id")
 	Integer game_id, Model model) {
 		//ArrayList<String> playerNames = playerService.listAllPlayerNames();
-		ArrayList<Player> players = (ArrayList<Player>) playerService.listAllPlayers();
-		Map<Integer, String> playerMap = new HashMap<Integer, String>();
-		
-		for(Player player : players) {
-			playerMap.put(player.getPlayer_id(), player.getPlayer_name());
-		}
+		List<Player> players = playerService.listAllPlayers();
+//		Map<Integer, String> playerMap = new HashMap<Integer, String>();
+//		
+//		for(Player player : players) {
+//			playerMap.put(player.getPlayer_id(), player.getPlayer_name());
+//		}
 		
 		Stat newStat = new Stat();
 		newStat.setGame_id(game_id);
@@ -48,13 +47,14 @@ public class StatController {
 //		}
 //		System.out.println("");
 		
-		model.addAttribute("players", playerMap);
+		model.addAttribute("players", players);
 		model.addAttribute("stat", newStat);
 		return "statform";
 	}
 	
     @RequestMapping(value = "stat", method = RequestMethod.POST)
     public String saveStat(Stat stat){
+    	System.out.println("stat = " + stat);
     	statService.saveStat(stat);
     	Game game = gameService.getGameById(stat.getGame_id());
         return "redirect:/season/" + game.getSeason_number() + "/game/" + game.getGame_id();
