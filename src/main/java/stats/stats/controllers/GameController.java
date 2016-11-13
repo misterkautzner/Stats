@@ -51,7 +51,9 @@ public class GameController {
     @RequestMapping("season/{season_number}/game/new")
     public String newGame(@PathVariable Integer season_number, Model model){
     	Game newGame = new Game();
-    	newGame.setSeason_number(season_number);
+    	Season newSeason = new Season();
+    	newSeason.setSeason_number(season_number);
+    	newGame.setSeason(newSeason);
         model.addAttribute("game", newGame);	// Give a new (blank) game object to the form
         return "gameform";
     }
@@ -61,15 +63,15 @@ public class GameController {
 
     		gameService.saveGame(game);
 
-        return "redirect:/season/" + game.getSeason_number() + "/game/" + game.getGame_id();
+        return "redirect:/season/" + game.getSeason().getSeason_number() + "/game/" + game.getGame_id();
     }
     
     @RequestMapping("season/{season_number}/game/{game_id}/delete")
     public String deleteGame(@PathVariable Integer game_id, Model model){
     	Game game = gameService.getGameById(game_id);
     	gameService.deleteGameById(game_id);
-    	model.addAttribute("games", gameService.listBySeason(game.getSeason_number()));
-    	return "redirect:/season/" + game.getSeason_number();// + game/games";
+    	model.addAttribute("games", gameService.listBySeason(game.getSeason().getSeason_number()));
+    	return "redirect:/season/" + game.getSeason().getSeason_number();// + game/games";
     }
     
 

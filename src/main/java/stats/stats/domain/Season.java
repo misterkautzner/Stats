@@ -24,17 +24,6 @@ public class Season implements Serializable {
 	@Column(name = "season_name")
 	private String season_name;
 	
-	@OneToMany
-	private Set<Game> games;
-	
-	
-	public Set<Game> getGames() {
-		return games;
-	}
-
-	public void setGames(Set<Game> games) {
-		this.games = games;
-	}
 	
 	public Integer getSeason_number() {
 		return season_number;

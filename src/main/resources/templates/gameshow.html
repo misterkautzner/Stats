@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <title>Game</title>
 
@@ -33,20 +34,22 @@
 					<td th:text="${stat.sog}">sog</td>
 					<td th:text="${stat.goals}">goals</td>
 					<td th:text="${stat.saves}">saves</td>
-					<td><a th:href="${'/season/' + game.season_number + '/game/' + game.game_id + '/stat/' + stat.stat_id + '/edit'}">Edit</a></td>
-					<td><a th:href="${'/season/' + game.season_number + '/game/' + game.game_id + '/stat/' + stat.stat_id + '/delete/'}">Delete</a></td>
+					<td><a th:href="${'/season/' + game.season.season_number + '/game/' + game.game_id + '/stat/' + stat.stat_id + '/edit'}">Edit</a></td>
+					<td><a th:href="${'/season/' + game.season.season_number + '/game/' + game.game_id + '/stat/' + stat.stat_id + '/delete/'}">Delete</a></td>
 				</tr>
 			</table>
 			<div class="row">
 					<button id="btn1" type="button" class="btn btn-default">Add Stat</button>
 			</div>
+			<!--
 			<div class="row">
 				<a href="#" th:href="${'/season/' + game.season_number + '/game/' + game.game_id + '/stat/new'}">
 					<button type="button" class="btn btn-default">New Stat</button>
 				</a>
 			</div>
+			 -->
 			<div class="row">
-				<a href="#" th:href="${'/season/' + game.season_number}">
+				<a href="#" th:href="${'/season/' + game.season.season_number}">
 					<button type="button" class="btn btn-default">Back</button>
 				</a>
 			</div>
@@ -55,12 +58,12 @@
 	</div>
 
 </body>
-
+<!-- th:action="@{/stat}" -->
 <script>
 $(document).ready(function(){
     $("#btn1").click(function(){
         $("#newStatTable").append(
-	'<form class="tr" th:object="${stat}" th:action="@{/stat}" method="post" id="genForm" name="genForm">'
+	'<form class="tr" th:object="${stat}" th:action="@{/stat}" method="post" id="genForm">'
 		+'<input type="hidden" th:field="*{game.game_id}"/>'
         +'<span class="td">'
         	+'<select th:field="*{player.player_id}">'
@@ -82,13 +85,38 @@ $(document).ready(function(){
 		+'<span class="td">'
 		+'</span>'
 		+'<span class="td">'
-		// Don't make the following a link.  Just give it an action or something that saves.
-			//+'<button id="save_button" type="button" class="btn btn-default">Save</button>'
 			+'<input type="submit" value="Save"></input>'
 		+'</span>'
 	+'</form>');
     });
 
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    $("#genForm")
+        //.formValidation({
+            //... options ...
+        //})
+        .on('submit', function(e) {
+        //.on('success.form.fv', function(e) {
+            // Prevent form submission
+            e.preventDefault();
+
+            var $form = $(e.target),
+                fv    = $form.data('on');
+
+            // Use Ajax to submit form data
+            $.ajax({
+                url: $form.attr('action'),
+                type: 'POST',
+                data: $form.serialize(),
+                success: function(result) {
+                    // ... Process the result ...
+                }
+            });
+        });
 });
 </script>
 
@@ -112,14 +140,16 @@ $('#save_button').click(function(){
 </script>
  -->
  
+
+ <!-- 
  
 <script>
     $(document).ready(function () {
         $('#genForm').on('submit', function(e) {
             e.preventDefault();
             $.ajax({
-                url : '/stats'//$(this).attr('action') || window.location.pathname,
-                type: "GET",
+                url : $(this).attr('action') || window.location.pathname,//'/stat',
+                type: "POST",
                 data: $(this).serialize(),
                 success: function (data) {
                     $("#genForm").html(data);
@@ -133,5 +163,5 @@ $('#save_button').click(function(){
 
 
 </script>
-
+ -->
 </html>

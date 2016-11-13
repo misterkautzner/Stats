@@ -14,7 +14,7 @@ public interface GameService {
 	
 	Game saveGame(Game game);
 	
-	Game findGameBySeasonAndGame(Integer season_number, Integer game_number);
+//	Game findGameBySeasonAndGame(Integer season_number, Integer game_number);
 	
 	void deleteGameById(Integer game_id);
 	
