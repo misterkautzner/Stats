@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<title>Stats</title>
+
+<!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+	<div class="container">
+		<!--/*/ <th:block th:include="fragments/menubar :: header"></th:block> /*/-->
+
+		<h2 class="row text-center">Stats</h2>
+
+		<form class="form-horizontal" th:object="${player}" th:action="@{/player}" method="post">
+		<div>
+        	<select th:field="*{player.player_id}">
+				<option th:each="player : ${players}" th:text="${player.player_name}" th:value="${player.player_id}"></option>
+			</select>
+		</div>
+		
+		<div class="row">
+			<button id="btn1" type="button" class="btn btn-default">Add Player Stats</button>
+		</div>
+		</form>
+		<!-- 
+			<div class="row">
+					<button id="btn1" type="button" class="btn btn-default">Add Player Stats</button>
+			</div>
+			 -->
+
+
+
+
+
+
+
+		
+	</div>
+
+</body>
+
+<script>
+$(document).ready(function(){
+    $("#btn1").click(function(){
+    	//window.alert("Ajax code was run.");
+        $("#newStatTable").append(
+	
+        		'<div>'
+    			+'<table id="newStatTable" class="table table-striped">'
+    				+'<tr>'
+    					+'<th>Player</th>'
+    					+'<th>Team</th>'
+    					+'<th>Shots on Goal</th>'
+    					+'<th>Goals</th>'
+    					+'<th>Saves</th>'
+    					+'<th>Edit</th>'
+    					+'<th>Delete</th>'
+    				+'</tr>'
+    				+'<tr th:each="stat : ${stats}">'
+    					+'<td th:text="${stat.player.player_name}">player name</td>'
+    					+'<td th:text="${stat.team}">team</td>'
+    					+'<td th:text="${stat.sog}">sog</td>'
+    					+'<td th:text="${stat.goals}">goals</td>'
+    					+'<td th:text="${stat.saves}">saves</td>'
+    					+'<td><a th:href="${'/season/' + game.season.season_number + '/game/' + game.game_id + '/stat/' + stat.stat_id + '/edit'}">Edit</a></td>'
+    					+'<td><a th:href="${'/season/' + game.season.season_number + '/game/' + game.game_id + '/stat/' + stat.stat_id + '/delete/'}">Delete</a></td>'
+    				+'</tr>'
+    			+'</table>'
+    		+'</div>'
+	
+		);
+    });
+
+});
+</script>
+
+
+</html>

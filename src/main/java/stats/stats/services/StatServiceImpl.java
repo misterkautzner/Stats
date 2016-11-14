@@ -1,5 +1,7 @@
 package stats.services;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +15,7 @@ public class StatServiceImpl implements StatService {
 	StatRepository statRepository;
 
 	@Override
-	public Iterable<Stat> listStatsByGame(Integer game_id) {
+	public ArrayList<Stat> listStatsByGame(Integer game_id) {
 		return statRepository.findAllByGameId(game_id);
 	}
 
@@ -30,6 +32,11 @@ public class StatServiceImpl implements StatService {
 	@Override
 	public void deleteStatById(Integer stat_id) {
 		statRepository.delete(stat_id);
+	}
+
+	@Override
+	public ArrayList<Stat> listPlayerStats(Integer player_id) {
+		return statRepository.findAllByPlayerId(player_id);
 	}
 
 }

@@ -10,36 +10,42 @@
 <div class="container">
     <!--/*/ <th:block th:include="fragments/menubar :: header"></th:block> /*/-->
 
-    <h2>Player Details</h2>
-        <div>
-            <form class="form-horizontal">
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Player Name:</label>
-                    <div class="col-sm-10">
-                        <p class="form-control-static" th:text="${player.player_name}">player name</p></div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Description:</label>
-                    <div class="col-sm-10">
-                        <p class="form-control-static" th:text="${player.phone_number}">phone number</p>
-                    </div>
-                </div>
-                
-<!--    Upload a picture??
-             <div class="form-group">
-                    <label class="col-sm-2 control-label">Image Url:</label>
-                    <div class="col-sm-10">
-                        <p class="form-control-static" th:text="${product.imageUrl}">url....</p>
-                    </div>
-                </div>
-                 -->
-            </form>
-            <div class="row">
-				<a href="#" th:href="${'/players'}">
-					<button type="button" class="btn btn-default">Back</button>
-				</a>
-			</div>
-    </div>
+    <h2 class="row text-center">
+		<span th:text="${player.player_name}"/>
+	</h2>
+		
+    <h3>Stats</h3>
+		<div>
+			<table style="overflow-x:auto;" class="table table-striped">
+				<tr>
+					<th>Season - Game</th>
+					<td th:each="stat : ${stats}" th:text="${stat.game.season.season_number} +
+													' - ' + ${stat.game.game_number}"></td>
+				</tr>
+				<tr>
+					<th>Shots on Goal</th>
+					<td th:each="stat : ${stats}" th:text="${stat.sog}"></td>
+				</tr>
+				<tr>
+					<th>Goals</th>
+					<td th:each="stat : ${stats}" th:text="${stat.goals}"></td>
+				</tr>
+				<tr>
+					<th>Saves</th>
+					<td th:each="stat : ${stats}" th:text="${stat.saves}">saves</td>
+				</tr>
+
+				<!-- 
+				<tr th:each="stat : ${stats}">
+					<td th:text="${stat.player.player_name}"></td>
+					<td th:text="${stat.team}">team</td>
+					<td th:text="${stat.sog}">sog</td>
+					<td th:text="${stat.goals}">goals</td>
+					<td th:text="${stat.saves}">saves</td>
+				</tr>
+				 -->
+			</table>
+		</div>
 </div>
 
 </body>

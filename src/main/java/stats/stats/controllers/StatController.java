@@ -55,21 +55,6 @@ public class StatController {
         return "redirect:/season/" + game.getSeason().getSeason_number() + "/game/" + game.getGame_id();
     }
     
-//    @RequestMapping(value = "dynamicStat", method = RequestMethod.POST)
-//    public String saveDynamicStat(Stat dynamicStat, Model model) {
-//    	Game game = gameService.getGameById(dynamicStat.getGame().getGame_id());
-//    	int game_id = game.getGame_id();
-//		ArrayList<Stat> gameStats = (ArrayList<Stat>) statService.listStatsByGame(game_id);
-//    	statService.saveStat(dynamicStat);
-//    	List<Player> players = playerService.listAllPlayers();
-//		Stat newStat = new Stat();
-//    	model.addAttribute("stat", newStat);
-//		model.addAttribute("players", players);
-//		model.addAttribute("game", gameService.getGameById(game_id));
-//		model.addAttribute("stats", gameStats);
-//		return "gameshow";
-//    }
-    
     
 	@RequestMapping("/season/{season_number}/game/{game_id}")
 	public String showGame(@PathVariable Integer season_number, @PathVariable Integer game_id, Model model) {
@@ -93,6 +78,22 @@ public class StatController {
 		model.addAttribute("stats", statService.listStatsByGame(game_id));
 		return "redirect:/season/" + season_number + "/game/" + game_id;
 	}
+	
+    @RequestMapping("player/{id}")
+    public String showplayer(@PathVariable Integer id, Model model){
+        List<Stat> stats = statService.listPlayerStats(id);
+        
+//        for(Stat stat : stats) {
+//        	System.out.println("");
+//        	System.out.println("Season number = " + stat.getGame().getSeason().getSeason_number());
+//        	System.out.println("Game number = " + stat.getGame().getGame_number());
+//        	System.out.println("");
+//        }
+        		
+        model.addAttribute("stats", stats);
+        model.addAttribute("player", playerService.getPlayerById(id));
+        return "playershow";
+    }
 	
 	
 }

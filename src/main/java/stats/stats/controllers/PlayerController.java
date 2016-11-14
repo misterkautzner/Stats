@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import stats.domain.Player;
 import stats.services.PlayerService;
+import stats.services.StatService;
 
 
 
@@ -17,6 +18,7 @@ public class PlayerController {
 	
 	@Autowired
 	private PlayerService playerService;
+
 
 //    public void setplayerService(PlayerService playerService) {
 //        this.playerService = playerService;
@@ -29,11 +31,7 @@ public class PlayerController {
         return "players";
     }
 
-    @RequestMapping("player/{id}")
-    public String showplayer(@PathVariable Integer id, Model model){
-        model.addAttribute("player", playerService.getPlayerById(id));
-        return "playershow";
-    }
+
 
     @RequestMapping("player/edit/{id}")
     public String edit(@PathVariable Integer id, Model model){
