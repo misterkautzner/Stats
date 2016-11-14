@@ -44,10 +44,10 @@ public class GameServiceImpl implements GameService{
 		return gameRepository.findAllBySeason(season_number);
 	}
 
-//	@Override
-//	public Game findGameBySeasonAndGame(Integer season_number, Integer game_number) {
-//		return gameRepository.findOneBySeasonAndGame(season_number, game_number);
-//	}
+	@Override
+	public Game findGameBySeasonAndGame(Integer season_number, Integer game_number) {
+		return gameRepository.findOneBySeasonAndGame(season_number, game_number);
+	}
 
 
 
