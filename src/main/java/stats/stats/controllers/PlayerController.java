@@ -25,7 +25,7 @@ public class PlayerController {
     @RequestMapping(value = "/players", method = RequestMethod.GET)
     public String list(Model model){
         model.addAttribute("players", playerService.listAllPlayers());
-        System.out.println("Returning players:");
+        model.addAttribute("player", new Player());
         return "players";
     }
 
@@ -48,11 +48,12 @@ public class PlayerController {
     }
 
     @RequestMapping(value = "player", method = RequestMethod.POST)
-    public String savePlayer(Player player){
+    public String savePlayer(Player player, Model model){
 
         playerService.savePlayer(player);
-
-        return "redirect:/player/" + player.getPlayer_id();
+        model.addAttribute("players", playerService.listAllPlayers());
+        model.addAttribute("player", new Player());
+        return "redirect:/players";
     }
     
     @RequestMapping("player/delete/{player_id}")

@@ -32,39 +32,6 @@ public class SeasonController {
         return "seasons";
     }
 
-//    @RequestMapping("season/{season_number}")
-//    public String showSeason(@PathVariable Integer season_number, Model model){
-//        model.addAttribute("season", seasonService.getSeasonById(season_number));
-//        return "seasonshow";
-//    }
-    
-//    @RequestMapping("season/{season_number}")
-//    public void /*String*/ showSeason(@PathVariable Integer season_number, Model model){
-//    	System.out.println("");
-//    	System.out.println("Entering showSeason()");
-//    	System.out.println("");
-//    	Season thisSeason = seasonService.getSeasonByNumber(season_number);
-//    	
-//    	System.out.println("----------------------------------------------------------------------------");
-//    	System.out.println("Season: " + season_number + "   : " + thisSeason.getSeason_name());
-//    	
-////    	Set<Game> theseGames = thisSeason.getGames();
-//        model.addAttribute("season", thisSeason);
-//        //return "seasonshow";
-//    }
-    
-  
-  public Season getSeason(Integer season_number){
-  	System.out.println("");
-  	System.out.println("Entering showSeason()");
-  	System.out.println("");
-  	Season season = seasonService.getSeasonByNumber(season_number);
-  	System.out.println("----------------------------------------------------------------------------");
-  	System.out.println("Season: " + season_number + "   : " + season.getSeason_name());
-      return season;
-  }
-    
-	
 
     @RequestMapping("season/{season_number}/edit")
     public String edit(@PathVariable Integer season_number, Model model){
