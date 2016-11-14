@@ -34,6 +34,9 @@ public class GameController {
 	public /*void/*/String list(@PathVariable Integer season_number, Model model) {		// Get a list of all games
 		ArrayList<Game> seasonGames = gameService.listBySeason(season_number);
 		Season season = seasonService.getSeasonByNumber(season_number);
+		Game newGame = new Game();
+    	newGame.setSeason(season);
+        model.addAttribute("game", newGame);
 		model.addAttribute("season", season);
 		model.addAttribute("games", seasonGames);	// Add them to the page ?
 		return "seasonshow";		// Reload the page?
@@ -61,9 +64,9 @@ public class GameController {
     @RequestMapping(value = "game", method = RequestMethod.POST)
     public String saveGame(Game game){
 
-    		gameService.saveGame(game);
-
-        return "redirect:/season/" + game.getSeason().getSeason_number() + "/game/" + game.getGame_id();
+    	gameService.saveGame(game);
+    	Season season = seasonService.getSeasonByNumber(game.getSeason().getSeason_number());
+        return "redirect:/season/" + game.getSeason().getSeason_number();
     }
     
     @RequestMapping("season/{season_number}/game/{game_id}/delete")
