@@ -27,8 +27,9 @@ public class SeasonController {
 
     @RequestMapping(value = "/seasons", method = RequestMethod.GET)
     public String list(Model model){
+    	Season season = new Season();
+    	model.addAttribute("season", season);
         model.addAttribute("seasons", seasonService.listAllSeasons());
-        System.out.println("Returning seasons:");
         return "seasons";
     }
 
@@ -47,12 +48,8 @@ public class SeasonController {
 
     @RequestMapping(value = "season", method = RequestMethod.POST)
     public String saveSeason(Season season){
-
         seasonService.saveSeason(season);
-        System.out.println("");
-        System.out.println("Trying to 'redirect:/season/" + season.getSeason_number() +"'");
-        System.out.println("");
-        return "redirect:/season/" + season.getSeason_number();
+        return "redirect:/seasons";
     }
 
     @RequestMapping("season/{season_number}/delete")
