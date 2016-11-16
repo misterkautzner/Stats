@@ -1,11 +1,11 @@
 package stats.services;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import stats.domain.Player;
 
 public interface PlayerService {
-	List<Player> listAllPlayers();
+	ArrayList<Player> listAllPlayers();
 	
 	Player getPlayerById(Integer id);
 	
@@ -13,6 +13,6 @@ public interface PlayerService {
 	
 	void deletePlayer(Integer id);
 	
-	List<String> listAllPlayerNames();
+	ArrayList<String> listAllPlayerNames();
 
 }

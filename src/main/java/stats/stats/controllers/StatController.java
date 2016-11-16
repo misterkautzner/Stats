@@ -85,93 +85,7 @@ public class StatController {
         List<Stat> stats = statService.listPlayerStats(id);
         ArrayList<SeasonStat> seasonStats = statService.listPlayerSeasonStat(id);
         SeasonStat careerStat = statService.getCareerStat(id);
-//    	int maxShots = 0;
-//    	int maxGoals = 0;
-//    	int maxSaves = 0;
-//        for (SeasonStat seasonStat : seasonStats) {
-//        	
-//        	if (seasonStat.getMaxShots() > maxShots)			// Setting career max stats
-//    		maxShots = seasonStat.getMaxShots();
-//
-//        	if (seasonStat.getMaxGoals() > maxGoals)
-//        		maxGoals = seasonStat.getMaxGoals();
-//    	
-//        	if (seasonStat.getMaxSaves() > maxSaves)
-//        		maxSaves = seasonStat.getMaxSaves();
-//        }
-        
-        
-//    	int maxShots = 0;
-//    	int maxGoals = 0;
-//    	int maxSaves = 0;
-//    	int totalShots = 0;
-//    	int totalGoals = 0;
-//    	int totalSaves = 0;
-//    	
-//    	int thisSog;
-//    	int thisGoals;
-//    	int thisSaves;
-//        
-//        SeasonStat seasonStat = new SeasonStat();
-//        int season_number = stats.get(0).getGame().getSeason().getSeason_number();
-//        int sog = 0;
-//        int goals = 0;
-//        int saves = 0;
-//        List<SeasonStat> seasonStats = new ArrayList<SeasonStat>();
-//        for (Stat stat : stats) {
-//        	
-//        	if (stat.getGame().getSeason().getSeason_number() != season_number) {	// If new Season save old
-//        		seasonStat.setSeason_number(season_number);							// and reset for new
-//        		seasonStat.setTotalShots(sog);
-//        		seasonStat.setTotalGoals(goals);
-//        		seasonStat.setTotalSaves(saves);
-//        		
-//        		seasonStats.add(seasonStat);
-//        		
-//        		seasonStat = new SeasonStat();
-//        		season_number = stat.getGame().getSeason().getSeason_number();
-//        		sog = 0;
-//        		goals = 0;
-//        		saves = 0;
-//        	}
-//        	
-//        	thisSog = stat.getSog();		// Used below
-//        	thisGoals = stat.getGoals();
-//        	thisSaves = stat.getSaves();
-//        	
-//        	sog += thisSog;					// Incrementing this season's stats
-//        	goals += thisGoals;
-//        	saves += thisSaves;
-//        	
-//        	if (thisSog > maxShots)			// Setting career max stats
-//    		maxShots = thisSog;
-//
-//        	if (thisGoals > maxGoals)
-//        		maxGoals = thisGoals;
-//    	
-//        	if (thisSaves > maxSaves)
-//        		maxSaves = thisSaves;
-//    	
-//    	totalShots += thisSog;				// Setting career totals
-//    	totalGoals += thisGoals;
-//    	totalSaves += thisSaves;
-//        	
-//        }
-//		seasonStat.setSeason_number(season_number);		//  Last seasonStat set here
-//		seasonStat.setTotalShots(sog);
-//		seasonStat.setTotalGoals(goals);
-//		seasonStat.setTotalSaves(saves);
-//        
-//        seasonStats.add(seasonStat);
-        
-//        for (SeasonStat tSS : seasonStats) {
-//          System.out.println("");
-//          System.out.println("season number = " + tSS.getSeason_number());
-//          System.out.println("total shots = " + tSS.getTotalShots());
-//          System.out.println("total goals = " + tSS.getTotalGoals());
-//          System.out.println("total saves = " + tSS.getTotalSaves());
-//          System.out.println("");}
-        
+
 //    	int last3AvgGoals; // Have them enter the number?
 //    	int last6AvgGoals;
 //    	int last9avgGoals;
@@ -191,17 +105,77 @@ public class StatController {
         //Include Contact Info on the last page
         
         //In gmail, add signature with contact information
+        
         model.addAttribute("seasonStats", seasonStats);
         model.addAttribute("careerStat", careerStat);
-//    	model.addAttribute("max_shots", maxShots);
-//        model.addAttribute("max_goals", maxGoals);
-//        model.addAttribute("max_saves", maxSaves);
-//        model.addAttribute("total_shots", totalShots);
-//        model.addAttribute("total_goals", totalGoals);
-//        model.addAttribute("total_saves", totalSaves);
         model.addAttribute("stats", stats);
         model.addAttribute("player", playerService.getPlayerById(id));
         return "playershow";
+    }
+    
+    
+    @RequestMapping("/stats")
+    public String clubStats(Model model) {
+    	
+    	ArrayList<Player> players = playerService.listAllPlayers();
+    	
+    	Stat maxShooter = new Stat();
+    	Stat maxGoaler = new Stat();
+    	Stat maxSaver = new Stat();
+    	Stat totalShooter = new Stat();
+    	Stat totalGoaler = new Stat();
+    	Stat totalSaver = new Stat();
+    	
+    	for (Player player : players) {
+    		SeasonStat careerStat = statService.getCareerStat(player.getPlayer_id());
+    		if (careerStat.getMax_shots() > maxShooter.getSog()) {
+//    			System.out.println("");
+//    			System.out.println("careerStat player name = " + careerStat.getPlayer().getPlayer_name());
+//    			System.out.println("");
+    			maxShooter.setPlayer(player);
+    			maxShooter.setSog(careerStat.getMax_shots());
+    		}
+    		if (careerStat.getMax_goals() > maxGoaler.getGoals()) {
+    			maxGoaler.setPlayer(player);
+    			maxGoaler.setGoals(careerStat.getMax_goals());
+    			System.out.println("");
+    			System.out.println("maxGoaler = " + maxGoaler.getPlayer().getPlayer_name() +
+    					"   " + maxGoaler.getGoals());
+    			System.out.println("");
+    		}
+    		if (careerStat.getMax_saves() > maxShooter.getSaves()) {
+    			maxSaver.setPlayer(player);
+    			maxSaver.setSaves(careerStat.getMax_saves());
+    		}
+    		if (careerStat.getTotal_shots() > totalShooter.getSog()) {
+    			totalShooter.setPlayer(player);
+    			totalShooter.setSog(careerStat.getTotal_shots());
+    		}
+    		if (careerStat.getTotal_goals() > totalGoaler.getGoals()) {
+    			totalGoaler.setPlayer(player);
+    			totalGoaler.setGoals(careerStat.getTotal_goals());
+    		}
+    		if (careerStat.getTotal_saves() > totalSaver.getSaves()) {
+    			totalSaver.setPlayer(player);
+    			totalSaver.setSaves(careerStat.getTotal_saves());
+    		}
+    	}
+    	
+		System.out.println("");
+		System.out.println("maxShooter player name = " + maxShooter.getPlayer().getPlayer_name());
+		System.out.println("");
+    	
+    	model.addAttribute("maxShooter", maxShooter);
+    	model.addAttribute("maxGoaler", maxGoaler);
+    	model.addAttribute("maxSaver", maxSaver);
+    	model.addAttribute("totalShooter", totalShooter);
+    	model.addAttribute("totalGoaler", totalGoaler);
+    	model.addAttribute("totalSaver", totalSaver);
+    	
+    	
+    	//ArrayList<SeasonStat> seasonStats = statService.listPlayerSeasonStat(player.getPlayer_id());
+    	
+    	return "stats";
     }
 	
 	

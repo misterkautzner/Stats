@@ -11,24 +11,37 @@
 	<div class="container">
 		<!--/*/ <th:block th:include="fragments/menubar :: header"></th:block> /*/-->
 
-		<h2 class="row text-center">Stats</h2>
+		<h2 class="row text-center">Club Records</h2>
 
-		<form class="form-horizontal" th:object="${player}" th:action="@{/player}" method="post">
+		<h3>Career</h3>
 		<div>
-        	<select th:field="*{player.player_id}">
-				<option th:each="player : ${players}" th:text="${player.player_name}" th:value="${player.player_id}"></option>
-			</select>
+			<table class="table table-striped">
+				<tr>
+					<th>Shots in a Game</th>
+					<th>Goals in a Game</th>
+					<th>Saves in a Game</th>
+				</tr>
+				<tr>
+					<td th:text="${maxShooter.sog} + ' - ' + ${maxShooter.player.player_name}"></td>
+					<td th:text="${maxGoaler.goals} + ' - ' + ${maxGoaler.player.player_name}"></td>
+					<td th:text="${maxSaver.saves} + ' - ' + ${maxSaver.player.player_name}"></td>
+				</tr>
+			</table>
 		</div>
-		
-		<div class="row">
-			<button id="btn1" type="button" class="btn btn-default">Add Player Stats</button>
+				<div>
+			<table class="table table-striped">
+				<tr>
+					<th>Total Shots</th>
+					<th>Total Goals</th>
+					<th>Total Saves</th>
+				</tr>
+				<tr>
+					<td th:text="${totalShooter.sog} + ' - ' + ${totalShooter.player.player_name}"></td>
+					<td th:text="${totalGoaler.goals} + ' - ' + ${totalGoaler.player.player_name}"></td>
+					<td th:text="${totalSaver.saves} + ' - ' + ${totalSaver.player.player_name}"></td>
+				</tr>
+			</table>
 		</div>
-		</form>
-		<!-- 
-			<div class="row">
-					<button id="btn1" type="button" class="btn btn-default">Add Player Stats</button>
-			</div>
-			 -->
 
 
 

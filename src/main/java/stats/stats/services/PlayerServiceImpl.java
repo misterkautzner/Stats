@@ -1,7 +1,6 @@
 package stats.services;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,8 +22,8 @@ public class PlayerServiceImpl implements PlayerService {
 //    }
 
     @Override
-    public List<Player> listAllPlayers() {
-        return playerRepository.findAll();
+    public ArrayList<Player> listAllPlayers() {
+        return (ArrayList<Player>) playerRepository.findAll();
     }
 
     @Override
