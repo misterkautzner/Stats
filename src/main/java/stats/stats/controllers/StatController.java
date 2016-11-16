@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import stats.domain.Game;
 import stats.domain.Player;
+import stats.domain.SeasonStat;
 import stats.domain.Stat;
 import stats.services.GameService;
 import stats.services.PlayerService;
@@ -82,14 +83,122 @@ public class StatController {
     @RequestMapping("player/{id}")
     public String showplayer(@PathVariable Integer id, Model model){
         List<Stat> stats = statService.listPlayerStats(id);
-        
-//        for(Stat stat : stats) {
-//        	System.out.println("");
-//        	System.out.println("Season number = " + stat.getGame().getSeason().getSeason_number());
-//        	System.out.println("Game number = " + stat.getGame().getGame_number());
-//        	System.out.println("");
+        ArrayList<SeasonStat> seasonStats = statService.listPlayerSeasonStat(id);
+        SeasonStat careerStat = statService.getCareerStat(id);
+//    	int maxShots = 0;
+//    	int maxGoals = 0;
+//    	int maxSaves = 0;
+//        for (SeasonStat seasonStat : seasonStats) {
+//        	
+//        	if (seasonStat.getMaxShots() > maxShots)			// Setting career max stats
+//    		maxShots = seasonStat.getMaxShots();
+//
+//        	if (seasonStat.getMaxGoals() > maxGoals)
+//        		maxGoals = seasonStat.getMaxGoals();
+//    	
+//        	if (seasonStat.getMaxSaves() > maxSaves)
+//        		maxSaves = seasonStat.getMaxSaves();
 //        }
-        		
+        
+        
+//    	int maxShots = 0;
+//    	int maxGoals = 0;
+//    	int maxSaves = 0;
+//    	int totalShots = 0;
+//    	int totalGoals = 0;
+//    	int totalSaves = 0;
+//    	
+//    	int thisSog;
+//    	int thisGoals;
+//    	int thisSaves;
+//        
+//        SeasonStat seasonStat = new SeasonStat();
+//        int season_number = stats.get(0).getGame().getSeason().getSeason_number();
+//        int sog = 0;
+//        int goals = 0;
+//        int saves = 0;
+//        List<SeasonStat> seasonStats = new ArrayList<SeasonStat>();
+//        for (Stat stat : stats) {
+//        	
+//        	if (stat.getGame().getSeason().getSeason_number() != season_number) {	// If new Season save old
+//        		seasonStat.setSeason_number(season_number);							// and reset for new
+//        		seasonStat.setTotalShots(sog);
+//        		seasonStat.setTotalGoals(goals);
+//        		seasonStat.setTotalSaves(saves);
+//        		
+//        		seasonStats.add(seasonStat);
+//        		
+//        		seasonStat = new SeasonStat();
+//        		season_number = stat.getGame().getSeason().getSeason_number();
+//        		sog = 0;
+//        		goals = 0;
+//        		saves = 0;
+//        	}
+//        	
+//        	thisSog = stat.getSog();		// Used below
+//        	thisGoals = stat.getGoals();
+//        	thisSaves = stat.getSaves();
+//        	
+//        	sog += thisSog;					// Incrementing this season's stats
+//        	goals += thisGoals;
+//        	saves += thisSaves;
+//        	
+//        	if (thisSog > maxShots)			// Setting career max stats
+//    		maxShots = thisSog;
+//
+//        	if (thisGoals > maxGoals)
+//        		maxGoals = thisGoals;
+//    	
+//        	if (thisSaves > maxSaves)
+//        		maxSaves = thisSaves;
+//    	
+//    	totalShots += thisSog;				// Setting career totals
+//    	totalGoals += thisGoals;
+//    	totalSaves += thisSaves;
+//        	
+//        }
+//		seasonStat.setSeason_number(season_number);		//  Last seasonStat set here
+//		seasonStat.setTotalShots(sog);
+//		seasonStat.setTotalGoals(goals);
+//		seasonStat.setTotalSaves(saves);
+//        
+//        seasonStats.add(seasonStat);
+        
+//        for (SeasonStat tSS : seasonStats) {
+//          System.out.println("");
+//          System.out.println("season number = " + tSS.getSeason_number());
+//          System.out.println("total shots = " + tSS.getTotalShots());
+//          System.out.println("total goals = " + tSS.getTotalGoals());
+//          System.out.println("total saves = " + tSS.getTotalSaves());
+//          System.out.println("");}
+        
+//    	int last3AvgGoals; // Have them enter the number?
+//    	int last6AvgGoals;
+//    	int last9avgGoals;
+//    	
+//    	int last3AvgSaves;
+//    	int last6AvgSaves;
+//    	int last9avgSaves;
+        
+        //Generic Stats Page
+        //Highest of each stats per season (with player name)
+        //Club records
+        //Incorporate Wins in stats (team)
+        
+        //Twilo  (free text messages)
+        //Twitter BootStrap (Make front end look better)
+        //Mailgun (send out free emails with link to stats)
+        //Include Contact Info on the last page
+        
+        //In gmail, add signature with contact information
+        model.addAttribute("seasonStats", seasonStats);
+        model.addAttribute("careerStat", careerStat);
+//    	model.addAttribute("max_shots", maxShots);
+//        model.addAttribute("max_goals", maxGoals);
+//        model.addAttribute("max_saves", maxSaves);
+//        model.addAttribute("total_shots", totalShots);
+//        model.addAttribute("total_goals", totalGoals);
+//        model.addAttribute("total_saves", totalSaves);
         model.addAttribute("stats", stats);
         model.addAttribute("player", playerService.getPlayerById(id));
         return "playershow";

@@ -17,4 +17,8 @@ public interface StatRepository extends JpaRepository <Stat, Integer>{
 	@Query("SELECT s FROM Stat s WHERE s.player.player_id = ?#{[0]} ORDER BY"
 			+ " s.game.date DESC")
 	public ArrayList<Stat> findAllByPlayerId(Integer player_id);
+	
+//	@Query("SELECT s FROM Stat s ORDER BY s.game.season.season_number")
+//	public ArrayList<Stat> 
+	
 }
