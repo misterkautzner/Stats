@@ -43,8 +43,41 @@
 			</table>
 		</div>
 
-
-
+		<h3>Season</h3>
+		
+		<div>
+			<table class="table table-striped">
+				<tr>
+					<th>Season</th>
+					<th>Shots in a Game</th>
+					<th>Goals in a Game</th>
+					<th>Saves in a Game</th>
+				</tr>
+				<tr th:each="clubStat : ${clubStats}">
+					<td th:text="${season.season_number}"></td>
+					<td th:text="${clubStat.maxShooter.sog} + ' - ' + ${clubStat.maxShooter.player.player_name}"></td>
+					<td th:text="${clubStat.maxGoaler.goals} + ' - ' + ${clubStat.maxGoaler.player.player_name}"></td>
+					<td th:text="${clubStat.maxSaver.saves} + ' - ' + ${clubStat.maxSaver.player.player_name}"></td>
+				</tr>
+			</table>
+		</div>
+		<div>
+			<table class="table table-striped">
+				<tr>
+					<th>Season</th>
+					<th>Total Shots</th>
+					<th>Total Goals</th>
+					<th>Total Saves</th>
+				</tr>
+				<tr th:each="clubStat : ${clubStats}">
+					<td th:text="${season.season_number"></td>
+					<td th:text="${totalShooter.sog} + ' - ' + ${totalShooter.player.player_name}"></td>
+					<td th:text="${totalGoaler.goals} + ' - ' + ${totalGoaler.player.player_name}"></td>
+					<td th:text="${totalSaver.saves} + ' - ' + ${totalSaver.player.player_name}"></td>
+				</tr>
+			</table>
+		</div>
+		</div>
 
 
 

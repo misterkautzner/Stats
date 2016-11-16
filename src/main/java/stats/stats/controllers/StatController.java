@@ -10,12 +10,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import stats.domain.ClubStat;
 import stats.domain.Game;
 import stats.domain.Player;
+import stats.domain.Season;
 import stats.domain.SeasonStat;
 import stats.domain.Stat;
 import stats.services.GameService;
 import stats.services.PlayerService;
+import stats.services.SeasonService;
 import stats.services.StatService;
 
 @Controller
@@ -23,6 +26,8 @@ public class StatController {
 
 	@Autowired
 	StatService statService;
+	@Autowired
+	SeasonService seasonService;
 	@Autowired
 	GameService gameService;
 	@Autowired
@@ -93,16 +98,14 @@ public class StatController {
 //    	int last3AvgSaves;
 //    	int last6AvgSaves;
 //    	int last9avgSaves;
-        
-        //Generic Stats Page
-        //Highest of each stats per season (with player name)
-        //Club records
+
         //Incorporate Wins in stats (team)
         
         //Twilo  (free text messages)
         //Twitter BootStrap (Make front end look better)
         //Mailgun (send out free emails with link to stats)
-        //Include Contact Info on the last page
+        
+        //Include Contact Info on the last page of Presentation
         
         //In gmail, add signature with contact information
         
@@ -138,10 +141,10 @@ public class StatController {
     		if (careerStat.getMax_goals() > maxGoaler.getGoals()) {
     			maxGoaler.setPlayer(player);
     			maxGoaler.setGoals(careerStat.getMax_goals());
-    			System.out.println("");
-    			System.out.println("maxGoaler = " + maxGoaler.getPlayer().getPlayer_name() +
-    					"   " + maxGoaler.getGoals());
-    			System.out.println("");
+//    			System.out.println("");
+//    			System.out.println("maxGoaler = " + maxGoaler.getPlayer().getPlayer_name() +
+//    					"   " + maxGoaler.getGoals());
+//    			System.out.println("");
     		}
     		if (careerStat.getMax_saves() > maxShooter.getSaves()) {
     			maxSaver.setPlayer(player);
@@ -159,12 +162,10 @@ public class StatController {
     			totalSaver.setPlayer(player);
     			totalSaver.setSaves(careerStat.getTotal_saves());
     		}
-    	}
-    	
-		System.out.println("");
-		System.out.println("maxShooter player name = " + maxShooter.getPlayer().getPlayer_name());
-		System.out.println("");
-    	
+    	}	
+//		System.out.println("");
+//		System.out.println("maxShooter player name = " + maxShooter.getPlayer().getPlayer_name());
+//		System.out.println("");
     	model.addAttribute("maxShooter", maxShooter);
     	model.addAttribute("maxGoaler", maxGoaler);
     	model.addAttribute("maxSaver", maxSaver);
@@ -172,8 +173,70 @@ public class StatController {
     	model.addAttribute("totalGoaler", totalGoaler);
     	model.addAttribute("totalSaver", totalSaver);
     	
+    	maxShooter = new Stat();
+    	maxGoaler = new Stat();
+    	maxSaver = new Stat();
+    	totalShooter = new Stat();
+    	totalGoaler = new Stat();
+    	totalSaver = new Stat();
+    	ArrayList<ClubStat> clubStats = new ArrayList<ClubStat>();
     	
-    	//ArrayList<SeasonStat> seasonStats = statService.listPlayerSeasonStat(player.getPlayer_id());
+    	ArrayList<Season> seasons = seasonService.listAllSeasons();
+    	for (Season season : seasons) {
+    	
+    		for (Player player : players) {
+    			ArrayList<SeasonStat> seasonStats = statService.listPlayerSeasonStat(player.getPlayer_id());
+            
+    			for(SeasonStat seasonStat : seasonStats) {
+    				if (seasonStat.getSeason_number() == season.getSeason_number()) {
+    					if (seasonStat.getMax_shots() > maxShooter.getSog()) {
+    						maxShooter.setPlayer(player);
+    						maxShooter.setSog(seasonStat.getMax_shots());
+    					}
+    					if (seasonStat.getMax_goals() > maxGoaler.getGoals()) {
+    						maxGoaler.setPlayer(player);
+    						maxGoaler.setGoals(seasonStat.getMax_goals());
+    					}
+    					if (seasonStat.getMax_saves() > maxSaver.getSaves()) {
+    						maxSaver.setPlayer(player);
+    						maxSaver.setSaves(seasonStat.getMax_saves());
+    					}
+    					if (seasonStat.getTotal_shots() > totalShooter.getSog()) {
+    						totalShooter.setPlayer(player);
+    						totalShooter.setSog(seasonStat.getTotal_shots());
+    					}
+    					if (seasonStat.getTotal_goals() > totalGoaler.getGoals()) {
+    						totalGoaler.setPlayer(player);
+    						totalGoaler.setGoals(seasonStat.getTotal_goals());
+    					}
+    					if (seasonStat.getTotal_saves() > totalSaver.getSaves()) {
+    						totalSaver.setPlayer(player);
+    						totalSaver.setSaves(seasonStat.getTotal_saves());
+    					}
+    				}
+    			}
+    		}
+    		
+    		ClubStat clubStat = new ClubStat();
+    		clubStat.setMaxShooter(maxShooter);
+    		clubStat.setMaxGoaler(maxGoaler);
+    		clubStat.setMaxSaver(maxSaver);
+    		clubStat.setTotalShooter(totalShooter);
+    		clubStat.setTotalGoaler(totalGoaler);
+    		clubStat.setTotalSaver(totalSaver);
+    		
+    		clubStats.add(clubStat);
+    		
+        	maxShooter = new Stat();
+        	maxGoaler = new Stat();
+        	maxSaver = new Stat();
+        	totalShooter = new Stat();
+        	totalGoaler = new Stat();
+        	totalSaver = new Stat();
+    		
+    	}
+    	
+    	model.addAttribute("clubStats", clubStats);
     	
     	return "stats";
     }

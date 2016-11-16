@@ -1,10 +1,12 @@
 package stats.services;
 
+import java.util.ArrayList;
+
 import stats.domain.Season;
 
 public interface SeasonService {
 	
-	Iterable<Season> listAllSeasons();
+	ArrayList<Season> listAllSeasons();
 	
 	Season getSeasonByNumber(Integer season_number);
 	
