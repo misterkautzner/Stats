@@ -10,6 +10,11 @@ public class SeasonStat {
 	int max_goals;
 	int max_saves;
 	
+	public String toString() {
+		String x = "season = " + season_number + "  max_shots = " + max_shots + "  max_goals = " +
+					max_goals +"\n" + "  total_shots = " + total_shots;
+		return x;
+	}
 	
 	public Player getPlayer() {
 		return player;

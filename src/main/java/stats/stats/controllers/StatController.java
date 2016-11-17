@@ -180,18 +180,38 @@ public class StatController {
     	totalGoaler = new Stat();
     	totalSaver = new Stat();
     	ArrayList<ClubStat> clubStats = new ArrayList<ClubStat>();
-    	
+//    	
     	ArrayList<Season> seasons = seasonService.listAllSeasons();
     	for (Season season : seasons) {
-    	
+
+//    	
+//    		System.out.println("");
+//    		//System.out.println("season = " + season.getSeason_number());
+//    		
     		for (Player player : players) {
     			ArrayList<SeasonStat> seasonStats = statService.listPlayerSeasonStat(player.getPlayer_id());
-            
+
+
+//    			//System.out.println("player = " + player.getPlayer_name());
+    			if (seasonStats.size() == 0) {
+//    				System.out.println("AAAAAAAAAAA");
+    				continue;
+    			}
     			for(SeasonStat seasonStat : seasonStats) {
+//    				System.out.println("seasonStat season = " + seasonStat.getSeason_number() + "   season = " + season.getSeason_number());
     				if (seasonStat.getSeason_number() == season.getSeason_number()) {
+    					System.out.println("");
+    					System.out.println("player = " + player.getPlayer_name());
+//    				System.out.println("");
+//    					System.out.println(seasonStat);
+//    			}}}
+//    					System.out.println("seasonStat season == season : " + seasonStat.getSeason_number() + " == " + season.getSeason_number());
+    					System.out.println("shots:  " + seasonStat.getMax_shots() + " - " + maxShooter.getSog());
     					if (seasonStat.getMax_shots() > maxShooter.getSog()) {
     						maxShooter.setPlayer(player);
+    						System.out.println("maxShooter player = " + maxShooter.getPlayer().getPlayer_name());
     						maxShooter.setSog(seasonStat.getMax_shots());
+    						System.out.println("maxShooter shots = " + maxShooter.getSog());
     					}
     					if (seasonStat.getMax_goals() > maxGoaler.getGoals()) {
     						maxGoaler.setPlayer(player);
@@ -217,13 +237,21 @@ public class StatController {
     			}
     		}
     		
+    		
     		ClubStat clubStat = new ClubStat();
+    		clubStat.setSeason(season);
     		clubStat.setMaxShooter(maxShooter);
     		clubStat.setMaxGoaler(maxGoaler);
     		clubStat.setMaxSaver(maxSaver);
     		clubStat.setTotalShooter(totalShooter);
     		clubStat.setTotalGoaler(totalGoaler);
     		clubStat.setTotalSaver(totalSaver);
+    		
+//    		System.out.println("");
+//    		System.out.println("--------------------------------------------------");
+//    		System.out.println("clubStat season = " + season.getSeason_number());
+//    		System.out.println("maxShooter.player = " + maxShooter.getPlayer());
+//    		System.out.println("");
     		
     		clubStats.add(clubStat);
     		

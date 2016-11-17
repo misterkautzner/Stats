@@ -57,11 +57,24 @@ public class StatServiceImpl implements StatService {
     	int thisSaves;
         
         SeasonStat seasonStat = new SeasonStat();
+        
+//        System.out.println("player_id = " + player_id);
+//        System.out.println("stats size = " + stats.size());
+        if (stats.size() == 0) {
+//        	System.out.println("stats size = 00000000");
+        	ArrayList<SeasonStat> empty = new ArrayList<SeasonStat>();
+//        	SeasonStat zeroSeasonStat = new SeasonStat();
+//        	zeroSeasonStat.setSeason_number(1);
+//        	empty.add(zeroSeasonStat);
+        	return empty;
+        }
         int season_number = stats.get(0).getGame().getSeason().getSeason_number();
+        
         int sog = 0;
         int goals = 0;
         int saves = 0;
         ArrayList<SeasonStat> seasonStats = new ArrayList<SeasonStat>();
+        
         for (Stat stat : stats) {
         	
         	if (stat.getGame().getSeason().getSeason_number() != season_number) {	// If new Season save old
@@ -69,7 +82,11 @@ public class StatServiceImpl implements StatService {
         		seasonStat.setTotal_shots(sog);
         		seasonStat.setTotal_goals(goals);
         		seasonStat.setTotal_saves(saves);
-        		
+        		/////////////////////////////////////////////////
+        		seasonStat.setMax_shots(maxShots);
+        		seasonStat.setMax_goals(maxGoals);
+        		seasonStat.setMax_saves(maxSaves);
+        		/////////////////////////////////////////////////
         		seasonStats.add(seasonStat);
         		
         		seasonStat = new SeasonStat();
@@ -77,6 +94,11 @@ public class StatServiceImpl implements StatService {
         		sog = 0;
         		goals = 0;
         		saves = 0;
+        		/////////////////////////////////////////
+        		maxShots = 0;
+        		maxGoals = 0;
+        		maxSaves = 0;
+        		/////////////////////////////////////////
         	}
         	
         	thisSog = stat.getSog();		// Used below
@@ -96,15 +118,21 @@ public class StatServiceImpl implements StatService {
         	if (thisSaves > maxSaves)
         		maxSaves = thisSaves;
     	
-    	totalShots += thisSog;				// Setting career totals
-    	totalGoals += thisGoals;
-    	totalSaves += thisSaves;
+//    	totalShots += thisSog;				// Setting career totals
+//    	totalGoals += thisGoals;
+//    	totalSaves += thisSaves;
         	
         }
 		seasonStat.setSeason_number(season_number);		//  Last seasonStat set here
 		seasonStat.setTotal_shots(sog);
 		seasonStat.setTotal_goals(goals);
 		seasonStat.setTotal_saves(saves);
+		
+		/////////////////////////////////////////////////
+		seasonStat.setMax_shots(maxShots);
+		seasonStat.setMax_goals(maxGoals);
+		seasonStat.setMax_saves(maxSaves);
+		/////////////////////////////////////////////////
         
         seasonStats.add(seasonStat);
 		return seasonStats;
