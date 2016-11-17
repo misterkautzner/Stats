@@ -91,23 +91,6 @@ public class StatController {
         ArrayList<SeasonStat> seasonStats = statService.listPlayerSeasonStat(id);
         SeasonStat careerStat = statService.getCareerStat(id);
 
-//    	int last3AvgGoals; // Have them enter the number?
-//    	int last6AvgGoals;
-//    	int last9avgGoals;
-//    	
-//    	int last3AvgSaves;
-//    	int last6AvgSaves;
-//    	int last9avgSaves;
-
-        //Incorporate Wins in stats (team)
-        
-        //Twilo  (free text messages)
-        //Twitter BootStrap (Make front end look better)
-        //Mailgun (send out free emails with link to stats)
-        
-        //Include Contact Info on the last page of Presentation
-        
-        //In gmail, add signature with contact information
         
         model.addAttribute("seasonStats", seasonStats);
         model.addAttribute("careerStat", careerStat);
@@ -200,18 +183,18 @@ public class StatController {
     			for(SeasonStat seasonStat : seasonStats) {
 //    				System.out.println("seasonStat season = " + seasonStat.getSeason_number() + "   season = " + season.getSeason_number());
     				if (seasonStat.getSeason_number() == season.getSeason_number()) {
-    					System.out.println("");
-    					System.out.println("player = " + player.getPlayer_name());
+//    					System.out.println("");
+//    					System.out.println("player = " + player.getPlayer_name());
 //    				System.out.println("");
 //    					System.out.println(seasonStat);
 //    			}}}
 //    					System.out.println("seasonStat season == season : " + seasonStat.getSeason_number() + " == " + season.getSeason_number());
-    					System.out.println("shots:  " + seasonStat.getMax_shots() + " - " + maxShooter.getSog());
+//    					System.out.println("shots:  " + seasonStat.getMax_shots() + " - " + maxShooter.getSog());
     					if (seasonStat.getMax_shots() > maxShooter.getSog()) {
     						maxShooter.setPlayer(player);
-    						System.out.println("maxShooter player = " + maxShooter.getPlayer().getPlayer_name());
+//    						System.out.println("maxShooter player = " + maxShooter.getPlayer().getPlayer_name());
     						maxShooter.setSog(seasonStat.getMax_shots());
-    						System.out.println("maxShooter shots = " + maxShooter.getSog());
+//    						System.out.println("maxShooter shots = " + maxShooter.getSog());
     					}
     					if (seasonStat.getMax_goals() > maxGoaler.getGoals()) {
     						maxGoaler.setPlayer(player);

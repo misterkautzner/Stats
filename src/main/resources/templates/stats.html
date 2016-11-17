@@ -6,6 +6,7 @@
 
 <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
+
 <body>
 	<div class="container">
 		<!--/*/ <th:block th:include="fragments/menubar :: header"></th:block> /*/-->
@@ -20,15 +21,11 @@
 					<th>Goals in a Game</th>
 					<th>Saves in a Game</th>
 				</tr>
-				<tr>
+				<tr height="5">
 					<td th:text="${maxShooter.sog} + ' - ' + ${maxShooter.player.player_name}"></td>
 					<td th:text="${maxGoaler.goals} + ' - ' + ${maxGoaler.player.player_name}"></td>
 					<td th:text="${maxSaver.saves} + ' - ' + ${maxSaver.player.player_name}"></td>
 				</tr>
-			</table>
-		</div>
-				<div>
-			<table class="table table-striped">
 				<tr>
 					<th>Total Shots</th>
 					<th>Total Goals</th>
@@ -58,10 +55,6 @@
 					<td th:text="${clubStat.maxGoaler.goals} + ' - ' + ${clubStat.maxGoaler.player.player_name}"></td>
 					<td th:text="${clubStat.maxSaver.saves} + ' - ' + ${clubStat.maxSaver.player.player_name}"></td>
 				</tr>
-			</table>
-		</div>
-		<div>
-			<table class="table table-striped">
 				<tr>
 					<th>Season</th>
 					<th>Total Shots</th>
