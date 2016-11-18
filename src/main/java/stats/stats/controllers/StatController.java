@@ -205,7 +205,6 @@ public class StatController {
 			clubStat.setTotalGoaler(totalGoaler);
 			clubStat.setTotalSaver(totalSaver);
 
-
 			if(maxShooter.getPlayer() != null) // No players in an empty season causes an error
 				clubStats.add(clubStat);			//skip the bad clubStat
 
@@ -215,7 +214,6 @@ public class StatController {
 			totalShooter = new Stat();
 			totalGoaler = new Stat();
 			totalSaver = new Stat();
-
 		}
 
 		model.addAttribute("clubStats", clubStats);
