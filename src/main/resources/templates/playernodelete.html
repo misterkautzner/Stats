@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+<title>Cannot Delete</title>
+
+<!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+	<div class="container">
+		<!--/*/ <th:block th:include="fragments/menubar :: header"></th:block> /*/-->
+
+			<h2 class="row text-center">You cannot delete <span th:text="${player.player_name}" /> because this player has stats.</h2>
+			<h2 class="row text-center">To make the deletion, delete all of this player's stats first.</h2>
+
+		<div> 
+
+				<div class="row text-center">
+					<a href="#" th:href="${'/players'}"><button type="button" class="button">Back</button>
+					</a>
+				</div>
+
+		</div>
+
+	</div>
+	
+
+
+</body>
+</html>

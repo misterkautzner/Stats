@@ -1,17 +1,14 @@
 package stats.controllers;
 
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import stats.domain.Game;
 import stats.domain.Season;
-import stats.services.GameService;
 import stats.services.SeasonService;
 
 @Controller
@@ -54,7 +51,13 @@ public class SeasonController {
 
     @RequestMapping("season/{season_number}/delete")
     public String deleteSeason(@PathVariable Integer season_number, Model model){
+    	try {
     	seasonService.deleteSeasonByNumber(season_number);
+    	}
+    	catch (DataIntegrityViolationException e) {
+    		model.addAttribute("season", seasonService.getSeasonByNumber(season_number));
+    		return "seasonnodelete";
+    	}
     	model.addAttribute("seasons", seasonService.listAllSeasons());
     	return "redirect:/seasons";
     }

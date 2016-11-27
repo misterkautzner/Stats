@@ -1,6 +1,7 @@
 package stats.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import stats.domain.Player;
 import stats.services.PlayerService;
-import stats.services.StatService;
 
 
 
@@ -56,7 +56,13 @@ public class PlayerController {
     
     @RequestMapping("player/delete/{player_id}")
     public String deletePlayer(@PathVariable Integer player_id, Model model){
-    	playerService.deletePlayer(player_id);
+    	try {
+    		playerService.deletePlayer(player_id);
+    	}
+    	catch (DataIntegrityViolationException e) {
+    		model.addAttribute("player", playerService.getPlayerById(player_id));
+    		return "playernodelete";
+    	}
         model.addAttribute("players", playerService.listAllPlayers());
         return "redirect:/players";
     }

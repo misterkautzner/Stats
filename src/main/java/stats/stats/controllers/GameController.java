@@ -2,7 +2,10 @@ package stats.controllers;
 
 import java.util.ArrayList;
 
+import javax.validation.ConstraintViolationException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -72,7 +75,13 @@ public class GameController {
     @RequestMapping("season/{season_number}/game/{game_id}/delete")
     public String deleteGame(@PathVariable Integer game_id, Model model){
     	Game game = gameService.getGameById(game_id);
+    	try {
     	gameService.deleteGameById(game_id);
+    	}
+    	catch (DataIntegrityViolationException e) {
+    		model.addAttribute("game", game);
+    		return "/gamenodelete";
+    	}
     	model.addAttribute("games", gameService.listBySeason(game.getSeason().getSeason_number()));
     	return "redirect:/season/" + game.getSeason().getSeason_number();// + game/games";
     }

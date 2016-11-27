@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+<title>Cannot Delete</title>
+
+<!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+	<div class="container">
+		<!--/*/ <th:block th:include="fragments/menubar :: header"></th:block> /*/-->
+
+			<h2 class="row text-center">You cannot delete Season <span th:text="${season.season_number}" /> because it contains games.</h2>
+			<h2 class="row text-center">To make the deletion, delete all of its games first.</h2>
+
+		<div> 
+
+				<div class="row text-center">
+					<a href="#" th:href="${'/seasons'}"><button type="button" class="button">Back</button>
+					</a>
+				</div>
+
+		</div>
+
+	</div>
+	
+
+
+</body>
+</html>
