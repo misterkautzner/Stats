@@ -19,11 +19,6 @@ public class PlayerController {
 	@Autowired
 	private PlayerService playerService;
 
-
-//    public void setplayerService(PlayerService playerService) {
-//        this.playerService = playerService;
-//    }
-
     @RequestMapping(value = "/players", method = RequestMethod.GET)
     public String list(Model model){
         model.addAttribute("players", playerService.listAllPlayers());

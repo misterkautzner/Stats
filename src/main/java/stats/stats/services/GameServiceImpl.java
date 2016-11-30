@@ -14,11 +14,6 @@ public class GameServiceImpl implements GameService{
 	@Autowired	
 	private GameRepository gameRepository;
 	
-
-//	public void setGameRepository(GameRepository gameRepository) {
-//		this.gameRepository = gameRepository;
-//	}
-	
 	@Override
 	public Iterable<Game> listAllGames() {
 		return gameRepository.findAll();
@@ -48,18 +43,5 @@ public class GameServiceImpl implements GameService{
 	public Game findGameBySeasonAndGame(Integer season_number, Integer game_number) {
 		return gameRepository.findOneBySeasonAndGame(season_number, game_number);
 	}
-
-
-
-//	@Override
-//	public Season getSeasonByNumber(Integer season_number) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-	
-//	@Override Season getSeasonById(Integer season_id) {
-//		return seasonRepository.
-//	}
-
 
 }

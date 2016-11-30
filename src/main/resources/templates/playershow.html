@@ -62,16 +62,6 @@
 					<td class="thead" th:each="stat : ${stats}" th:text="${stat.game.season.season_number} +
 													' - ' + ${stat.game.game_number}"></td>
 				</tr>
-				
-		<!-- 		
-				<tr class="danger">
-					<th>Date</th>
-					<td th:each="stat : ${stats}" th:text="${stat.game.date.month} +
-													 '/' + ${stat.game.date.day} +
-													 '/' + ${stat.game.date.year}"></td>
-													  
-				</tr>
-		-->		
 		
 				<tr >
 					<th>Shots on Goal</th>

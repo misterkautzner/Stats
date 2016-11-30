@@ -58,14 +58,8 @@ public class StatServiceImpl implements StatService {
         
         SeasonStat seasonStat = new SeasonStat();
         
-//        System.out.println("player_id = " + player_id);
-//        System.out.println("stats size = " + stats.size());
         if (stats.size() == 0) {
-//        	System.out.println("stats size = 00000000");
         	ArrayList<SeasonStat> empty = new ArrayList<SeasonStat>();
-//        	SeasonStat zeroSeasonStat = new SeasonStat();
-//        	zeroSeasonStat.setSeason_number(1);
-//        	empty.add(zeroSeasonStat);
         	return empty;
         }
         int season_number = stats.get(0).getGame().getSeason().getSeason_number();
@@ -117,11 +111,6 @@ public class StatServiceImpl implements StatService {
     	
         	if (thisSaves > maxSaves)
         		maxSaves = thisSaves;
-    	
-//    	totalShots += thisSog;				// Setting career totals
-//    	totalGoals += thisGoals;
-//    	totalSaves += thisSaves;
-        	
         }
 		seasonStat.setSeason_number(season_number);		//  Last seasonStat set here
 		seasonStat.setTotal_shots(sog);

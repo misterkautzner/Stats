@@ -14,15 +14,7 @@
 		<div>
 			<form class="form-horizontal" th:object="${game}" th:action="@{/game}" method="post">
 			<input type="hidden" th:field="*{game_id}"/>
-			<input type="hidden" th:field="*{season.season_number}"/> <!-- The method that calls this page
-			should use GET or POST to get this from the database -->
-				<!-- <div class="form-group">
-					<label class="col-sm-2 control-label">Season Id:</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" th:field="*{season_id}" />
-					</div>
-				</div>  --> 
-
+			<input type="hidden" th:field="*{season.season_number}"/>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">Game Number:</label>
 					<div class="col-sm-10">

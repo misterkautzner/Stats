@@ -16,11 +16,6 @@ public class SeasonController {
 
 	@Autowired
 	private SeasonService seasonService;
-	
-	
-//    public void setSeasonService(SeasonService seasonService) {
-//        this.seasonService = seasonService;
-//    }
 
     @RequestMapping(value = "/seasons", method = RequestMethod.GET)
     public String list(Model model){

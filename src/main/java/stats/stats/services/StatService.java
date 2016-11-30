@@ -20,7 +20,6 @@ public interface StatService {
 	ArrayList<SeasonStat> listPlayerSeasonStat(Integer player_id);
 	
 	SeasonStat getCareerStat(Integer player_id);
-	
-//	ArrayList<Stat> getClubCareerStats();
+
 
 }

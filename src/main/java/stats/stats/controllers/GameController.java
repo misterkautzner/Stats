@@ -25,25 +25,21 @@ public class GameController {
 	@Autowired
 	private SeasonService seasonService;
 	
-//	public void setGameService(GameService gameService) {
-//		this.gameService = gameService;
-//	}
-	
 	public GameService getGameService() {
 		return gameService;
 	}
 				
 	@RequestMapping(value = "season/{season_number}", method = RequestMethod.GET)
-	public /*void/*/String list(@PathVariable Integer season_number, Model model) {		// Get a list of all games
+	public String list(@PathVariable Integer season_number, Model model) {		// Get a list of all games
 		ArrayList<Game> seasonGames = gameService.listBySeason(season_number);
 		Season season = seasonService.getSeasonByNumber(season_number);
 		Game newGame = new Game();
     	newGame.setSeason(season);
         model.addAttribute("game", newGame);
 		model.addAttribute("season", season);
-		model.addAttribute("games", seasonGames);	// Add them to the page ?
-		return "seasonshow";		// Reload the page?
-	}			//"games"
+		model.addAttribute("games", seasonGames);
+		return "seasonshow";
+	}	
 	
 	
 
@@ -83,7 +79,7 @@ public class GameController {
     		return "/gamenodelete";
     	}
     	model.addAttribute("games", gameService.listBySeason(game.getSeason().getSeason_number()));
-    	return "redirect:/season/" + game.getSeason().getSeason_number();// + game/games";
+    	return "redirect:/season/" + game.getSeason().getSeason_number();
     }
     
 

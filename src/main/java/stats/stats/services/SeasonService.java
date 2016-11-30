@@ -10,8 +10,6 @@ public interface SeasonService {
 	
 	Season getSeasonByNumber(Integer season_number);
 	
-	//Season getSeasonByNumber(Integer season_number);
-	
 	Season saveSeason(Season season);
 	
 	void deleteSeasonByNumber(Integer season_number);

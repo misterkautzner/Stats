@@ -16,11 +16,6 @@ public class PlayerServiceImpl implements PlayerService {
 	@Autowired
 	private PlayerRepository playerRepository;
 
-    
-//    public void setProductRepository(PlayerRepository playerRepository) {
-//        this.playerRepository = playerRepository;
-//    }
-
     @Override
     public ArrayList<Player> listAllPlayers() {
         return (ArrayList<Player>) playerRepository.findAll();
