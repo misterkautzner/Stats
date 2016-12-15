@@ -1,0 +1,7 @@
+This project acts as a statistic organizer for a sports club (like hockey).  The user can create new players, seasons, games within seasons, and stats for players within a game. It automatically calculates a player's personal records as well as records per season, and does the same for the club in general.  It's a convenient tool for groups that want to track progress.
+
+Technologies used:  Spring Framework, Spring MVC, Spring Boot, Java, Hibernate, MySQL/H2, SQL, Thymeleaf, jQuery, Bootstrap, HTML, CSS
+
+I built this application because a hockey club, of which I am a member, was tracking player stats very inefficiently.  Season stats for each player were calculated by hand.  This should save countless hours of work down the road.
+
+The project was originally wired to a MySQL database, but for easy-viewing purposes, it is currently connected to a H2 database which preloads semi-random data.  It takes a while to preload all of the data - I apologize.  The project needs quite a bit of data in order to demonstrate its significance.
